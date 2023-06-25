@@ -84,10 +84,11 @@ public struct OfflineAdBanner: View {
                         ForEach(ad.previews, id: \.self) { previewImage in
                             Image(previewImage)
                                 .resizable()
-                                .frame(width: 250, height: 500)
+                                .frame(width: 210, height: 440)
                                 .background(.ultraThinMaterial)
                                 .cornerRadius(30)
                                 .shadow(color: .black.opacity(0.1), radius: 3, x: 0, y: 5)
+                                .padding(.horizontal, 5)
                         }
                     }
                     .padding()
