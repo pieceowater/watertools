@@ -1,12 +1,14 @@
 import SwiftUI
 
 public struct OfflineAdBanner: View {
-    public let ad: Ad = MyApps.randomElement()!
-    @State public var counter = 30
+    public var ad: Ad
+    @State public var counter = 15
     @State public var timer: Timer?
     @State public var closeAllowed: Bool = false
     @Environment(\.presentationMode) public var presentationMode
-    public init() {}
+    public init(currentAppId: Int) {
+        self.ad = MyApps.filter({ $0.id != currentAppId }).randomElement()!
+    }
     public var body: some View {
         ScrollView {
             VStack {
