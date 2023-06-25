@@ -2,11 +2,11 @@ import SwiftUI
 import UIKit
 
 public struct OfflineAdBanner: View {
-    let ad: Ad = MyApps.randomElement()!
-    @State private var counter = 3
-    @State private var timer: Timer?
-    @State private var closeAllowed: Bool = false
-    @Environment(\.presentationMode) private var presentationMode
+    public let ad: Ad = MyApps.randomElement()!
+    @State public var counter = 3
+    @State public var timer: Timer?
+    @State public var closeAllowed: Bool = false
+    @Environment(\.presentationMode) public var presentationMode
 
   
     public var body: some View {

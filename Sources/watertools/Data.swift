@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Ad {
+public struct Ad {
     let id: Int
     let name: String
     let subtitle: String
@@ -18,7 +18,7 @@ struct Ad {
     let url: String
 }
 
-let MyApps: [Ad] = [
+public let MyApps: [Ad] = [
     Ad(id: 1,
        name: "MoneyGuard",
        subtitle: "Empower Your Finances",
