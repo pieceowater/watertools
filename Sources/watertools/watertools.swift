@@ -1,12 +1,13 @@
 import SwiftUI
 import UIKit
 
-@available(iOS 13.0, *)
 public struct OfflineAdBanner: View {
     let ad: Ad
     @State private var counter = 3
     @State private var timer: Timer?
     @State private var closeAllowed: Bool = false
+    @Environment(\.presentationMode) private var presentationMode
+
   
     public var body: some View {
             ScrollView {
@@ -16,7 +17,8 @@ public struct OfflineAdBanner: View {
                             .resizable()
                             .foregroundColor(.accentColor)
                             .frame(width: 60, height: 60)
-                            .background(Color.gray.opacity(0.3))
+//                            .background(Color.gray.opacity(0.3))
+                            .background(.ultraThinMaterial)
                             .cornerRadius(15)
                         VStack(alignment: .leading) {
                             Text(ad.name)
@@ -43,7 +45,8 @@ public struct OfflineAdBanner: View {
                         })
                     }
                     .padding()
-                    .background(Color.gray.opacity(0.1))
+//                    .background(Color.gray.opacity(0.1))
+                    .background(.ultraThinMaterial)
                     .shadow(color: .black.opacity(0.2), radius: 5, x: 0, y: 5)
                     
                     HStack{
@@ -70,7 +73,8 @@ public struct OfflineAdBanner: View {
                             }
                             .foregroundColor(.primary)
                             .padding(10)
-                            .background(Color.gray.opacity(0.3))
+//                            .background(Color.gray.opacity(0.3))
+                            .background(.ultraThinMaterial)
                             .cornerRadius(15)
                             .font(.caption)
                         })
@@ -137,13 +141,11 @@ public struct OfflineAdBanner: View {
         
         private func closeAd() {
             print("AD CLOSED")
-            
-            // Perform any additional actions to close the ad, such as dismissing the view
+            presentationMode.wrappedValue.dismiss()
         }
     
 }
 
-@available(iOS 13.0, *)
 struct OfflineAdBanner_Previews: PreviewProvider {
     static var previews: some View {
         let randomAd = MyApps.randomElement()
