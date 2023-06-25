@@ -16,9 +16,7 @@ let package = Package(
     targets: [
         .target(
             name: "watertools",
-            resources: [
-                .copy("Media.xcassets")
-            ]
+            resources: [.process("Images")]
         ),
         .testTarget(
             name: "watertoolsTests",
