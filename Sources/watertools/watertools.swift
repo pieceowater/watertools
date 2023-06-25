@@ -85,7 +85,9 @@ public struct OfflineAdBanner: View {
                             Image(previewImage)
                                 .resizable()
                                 .frame(width: 250, height: 500)
+                                .background(.ultraThinMaterial)
                                 .cornerRadius(30)
+                                .shadow(color: .black.opacity(0.1), radius: 3, x: 0, y: 5)
                         }
                     }
                     .padding()
@@ -143,6 +145,6 @@ public struct OfflineAdBanner: View {
 
 struct OfflineAdBanner_Previews: PreviewProvider {
     static var previews: some View {
-        OfflineAdBanner()
+        OfflineAdBanner(currentAppId: 1)
     }
 }
