@@ -2,7 +2,7 @@ import SwiftUI
 import UIKit
 
 public struct OfflineAdBanner: View {
-    let ad: Ad
+    let ad: Ad = MyApps.randomElement()!
     @State private var counter = 3
     @State private var timer: Timer?
     @State private var closeAllowed: Bool = false
@@ -148,7 +148,6 @@ public struct OfflineAdBanner: View {
 
 struct OfflineAdBanner_Previews: PreviewProvider {
     static var previews: some View {
-        let randomAd = MyApps.randomElement()
-        OfflineAdBanner(ad: randomAd!)
+        OfflineAdBanner()
     }
 }
