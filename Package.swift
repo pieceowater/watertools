@@ -16,7 +16,9 @@ let package = Package(
     targets: [
         .target(
             name: "watertools",
-            resources: [.process("Images")]
+            resources: [
+                .process("Images")
+            ]
         ),
         .testTarget(
             name: "watertoolsTests",
