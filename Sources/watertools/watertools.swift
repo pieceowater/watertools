@@ -148,6 +148,6 @@ public struct OfflineAdBanner: View {
 
 struct OfflineAdBanner_Previews: PreviewProvider {
     static var previews: some View {
-        OfflineAdBanner(currentAppId: 1)
+        OfflineAdBanner(currentAppId: 2)
     }
 }
