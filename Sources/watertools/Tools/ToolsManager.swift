@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Tool {
+public class Tool {
     static let fn = Tool()
     
     func formatDate(_ date: Date) -> String {
