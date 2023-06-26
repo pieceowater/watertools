@@ -83,8 +83,8 @@ public struct OfflineAdBanner: View {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach(ad.previews, id: \.self) { previewImage in
-                            Image(uiImage: UIImage(named: String(previewImage + locale), in: .module, with: nil) ?? UIImage())
+                        ForEach(ad.previews[locale]!, id: \.self) { previewImage in
+                            Image(uiImage: UIImage(named: previewImage, in: .module, with: nil) ?? UIImage())
                                 .resizable()
                                 .frame(width: 210, height: 440)
                                 .background(.ultraThinMaterial)
