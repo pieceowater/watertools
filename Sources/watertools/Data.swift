@@ -54,7 +54,7 @@ public let MyApps: [Ad] = [
         "ru":""
        ],
        icon: "SpeedStoryApp",
-       previews: ["speedstory1EN","speedstory2EN","speedstory3EN"],
+       previews: ["speedstory1","speedstory2","speedstory3"],
        description: [
         "en":"Elevate your driving experience with SpeedStory - Speedometer&Route. Our powerful app combines accurate speed monitoring and detailed route tracking to provide you with valuable insights. Stay in control of your speed, record your routes, and analyze your driving patterns. With a sleek interface and user-friendly features, SpeedStory is your ultimate driving companion. Download now and embark on a journey of enhanced driving performance and safety!",
         "ru":""
