@@ -36,7 +36,7 @@ public let MyApps: [Ad] = [
        icon: "MoneyGuardApp",
        previews: [
         "en":["moneyguard1EN","moneyguard2EN","moneyguard3EN","moneyguard4EN"],
-        "ru":["moneyguard1EN","moneyguard2EN","moneyguard3EN","moneyguard4EN"]
+        "ru":["moneyguard1RU","moneyguard2RU","moneyguard3RU","moneyguard4RU"]
        ],
        description: [
         "en":"Discover the Ultimate Financial Management App that Puts You in Control. Our feature-rich application is designed to empower you with a comprehensive suite of tools and functionalities. Effortlessly track your income and expenses, set budgets, and gain valuable insights with our intuitive interface and powerful analytics. Stay on top of your financial goals by setting savings targets and monitoring your progress. Make informed investment decisions with real-time market data and personalized recommendations. Securely connect your accounts for automatic transaction syncing and receive smart notifications for bill payments and upcoming due dates. With our app, financial management has never been easier or more accessible. Take charge of your financial future today and experience the power of our app's capabilities. Download now and embark on a journey towards financial success!",
@@ -59,7 +59,7 @@ public let MyApps: [Ad] = [
        icon: "SpeedStoryApp",
        previews: [
         "en":["speedstory1EN","speedstory2EN","speedstory3EN"],
-        "ru":["speedstory1EN","speedstory2EN","speedstory3EN"],
+        "ru":["speedstory1RU","speedstory2RU","speedstory3RU"],
        ],
        description: [
         "en":"Elevate your driving experience with SpeedStory - Speedometer&Route. Our powerful app combines accurate speed monitoring and detailed route tracking to provide you with valuable insights. Stay in control of your speed, record your routes, and analyze your driving patterns. With a sleek interface and user-friendly features, SpeedStory is your ultimate driving companion. Download now and embark on a journey of enhanced driving performance and safety!",
