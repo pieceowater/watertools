@@ -18,7 +18,7 @@ let package = Package(
             name: "watertools",
             path: "Sources",
             resources: [
-                .process("watertools/Images/Media.xcassets")
+                .process("Images/Media.xcassets")
             ]
         ),
         .testTarget(

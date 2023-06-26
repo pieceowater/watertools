@@ -13,7 +13,7 @@ public struct OfflineAdBanner: View {
         ScrollView {
             VStack {
                 HStack {
-                    Image(ad.icon)
+                    Image(uiImage: UIImage(named: ad.icon, in: .module, with: nil) ?? UIImage())
                         .resizable()
                         .foregroundColor(.accentColor)
                         .frame(width: 60, height: 60)
@@ -82,7 +82,7 @@ public struct OfflineAdBanner: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(ad.previews, id: \.self) { previewImage in
-                            Image(previewImage)
+                            Image(uiImage: UIImage(named: previewImage, in: .module, with: nil) ?? UIImage())
                                 .resizable()
                                 .frame(width: 210, height: 440)
                                 .background(.ultraThinMaterial)
