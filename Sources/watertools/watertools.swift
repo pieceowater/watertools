@@ -1,3 +1,4 @@
+import Foundation
 import SwiftUI
 
 public struct OfflineAdBanner: View {
@@ -5,6 +6,7 @@ public struct OfflineAdBanner: View {
     @State public var counter = 15
     @State public var timer: Timer?
     @State public var closeAllowed: Bool = false
+    var locale = Locale.current.languageCode!
     @Environment(\.presentationMode) public var presentationMode
     public init(currentAppId: Int) {
         self.ad = MyApps.filter({ $0.id != currentAppId }).randomElement()!
@@ -20,13 +22,13 @@ public struct OfflineAdBanner: View {
                         .background(.ultraThinMaterial)
                         .cornerRadius(15)
                     VStack(alignment: .leading) {
-                        Text(ad.name)
+                        Text(ad.name[locale]!)
                             .font(.title)
                             .foregroundColor(.accentColor)
                             .fontWeight(.bold)
                             .lineLimit(1)
                             .minimumScaleFactor(0.9)
-                        Text(ad.subtitle)
+                        Text(ad.subtitle[locale]!)
                             .lineLimit(1)
                             .minimumScaleFactor(0.8)
                             .font(.subheadline)
@@ -48,7 +50,7 @@ public struct OfflineAdBanner: View {
                 .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 5)
                 
                 HStack {
-                    Text(ad.caption)
+                    Text(ad.caption[locale]!)
                         .font(.caption)
                         .padding()
                         .multilineTextAlignment(.leading)
@@ -82,7 +84,7 @@ public struct OfflineAdBanner: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(ad.previews, id: \.self) { previewImage in
-                            Image(uiImage: UIImage(named: previewImage, in: .module, with: nil) ?? UIImage())
+                            Image(uiImage: UIImage(named: "\(previewImage)\(locale)", in: .module, with: nil) ?? UIImage())
                                 .resizable()
                                 .frame(width: 210, height: 440)
                                 .background(.ultraThinMaterial)
@@ -94,7 +96,7 @@ public struct OfflineAdBanner: View {
                     .padding()
                 }
                 
-                Text(ad.description)
+                Text(ad.description[locale]!)
                     .font(.caption)
                     .multilineTextAlignment(.leading)
                     .padding()
