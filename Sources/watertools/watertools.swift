@@ -38,7 +38,7 @@ public struct OfflineAdBanner: View {
                     Button(action: {
                         openAppStore()
                     }, label: {
-                        Text("Get App")
+                        Text(localizedButtons["download_btn"]?[locale] ?? "Get App")
                             .foregroundColor(.white)
                             .padding(10)
                             .background(Color.accentColor)
@@ -61,7 +61,7 @@ public struct OfflineAdBanner: View {
                         closeAd()
                     }, label: {
                         HStack(spacing: 10) {
-                            Text("Skip Ad")
+                            Text(localizedButtons["skip_btn"]?[locale] ?? "Skip Ad")
                             if closeAllowed {
                                 Image(systemName: "arrow.right.circle")
                             } else {
@@ -106,7 +106,7 @@ public struct OfflineAdBanner: View {
                 } label: {
                     HStack {
                         Spacer()
-                        Text("Get App")
+                        Text(localizedButtons["download_btn"]?[locale] ?? "Get App")
                         Spacer()
                     }
                     .foregroundColor(.white)
@@ -141,7 +141,6 @@ public struct OfflineAdBanner: View {
     }
     
     private func closeAd() {
-        print("AD CLOSED")
         presentationMode.wrappedValue.dismiss()
     }
 }
