@@ -7,17 +7,17 @@
 
 import Foundation
 
-public class Tool {
-    static let fn = Tool()
+//public class Tool {
+//    static let fn = Tool()
     
-    func formatDate(_ date: Date) -> String {
+    public func formatDate(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
         return formatter.string(from: date)
     }
 
-    func formatCurrency(_ amount: Double) -> String? {
+    public func formatCurrency(_ amount: Double) -> String? {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         formatter.groupingSeparator = " "
@@ -27,13 +27,13 @@ public class Tool {
         return formatter.string(from: NSNumber(value: amount))
     }
 
-    func formatDateMin(_ date: Date) -> String {
+    public func formatDateMin(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM"
         return formatter.string(from: date )
     }
 
-    func formatCurrencyMin(_ amount: Double) -> String? {
+    public func formatCurrencyMin(_ amount: Double) -> String? {
         let number = NSNumber(value: amount)
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
@@ -52,7 +52,7 @@ public class Tool {
         }
     }
 
-    func parseNumber(_ numberString: String) -> Double? {
+    public func parseNumber(_ numberString: String) -> Double? {
         let formatter = NumberFormatter()
         formatter.locale = Locale.current
         formatter.numberStyle = .decimal
@@ -67,7 +67,7 @@ public class Tool {
         return nil
     }
 
-    func formattedCoordinate(_ coordinate: Double?) -> String {
+    public func formattedCoordinate(_ coordinate: Double?) -> String {
         guard let coordinate = coordinate else { return "" }
         
         let formatter = NumberFormatter()
@@ -79,19 +79,19 @@ public class Tool {
         return "\(formattedString)°"
     }
 
-    func formattedDuration(_ duration: TimeInterval) -> String {
+    public func formattedDuration(_ duration: TimeInterval) -> String {
        let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute, .second]
         formatter.unitsStyle = .positional
        return formatter.string(from: duration) ?? ""
     }
 
-    func formattedDate(_ date: Date) -> String {
+    public func formattedDate(_ date: Date) -> String {
        let formatter = DateFormatter()
        formatter.dateStyle = .medium
        formatter.timeStyle = .short
        return formatter.string(from: date)
     }
 
-}
+//}
 
