@@ -54,19 +54,19 @@ public func parseNumber(_ numberString: String) -> Double? {
     let formatter = NumberFormatter()
     formatter.locale = Locale.current
     formatter.numberStyle = .decimal
+    formatter.allowsFloats = true // Allow fractional digits
     
-    print(numberString)
     let cleanedString = numberString
         .replacingOccurrences(of: "[^0-9.,]", with: "", options: .regularExpression)
         .replacingOccurrences(of: ",", with: ".")
     
     if let number = formatter.number(from: cleanedString) {
-        print(number.doubleValue)
         return number.doubleValue
     }
-    print("nil!")
+    
     return nil
 }
+
 
 public func formattedCoordinate(_ coordinate: Double?) -> String {
     guard let coordinate = coordinate else { return "" }
