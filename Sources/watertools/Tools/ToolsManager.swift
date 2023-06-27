@@ -51,20 +51,11 @@ public func formatCurrencyMin(_ amount: Double) -> String? {
 }
 
 public func parseNumber(_ numberString: String) -> Double? {
-    let formatter = NumberFormatter()
-    formatter.locale = Locale.current
-    formatter.numberStyle = .decimal
-    formatter.allowsFloats = true // Allow fractional digits
-    
     let cleanedString = numberString
         .replacingOccurrences(of: "[^0-9.,]", with: "", options: .regularExpression)
         .replacingOccurrences(of: ",", with: ".")
     
-    if let number = formatter.number(from: cleanedString) {
-        return number.doubleValue
-    }
-    
-    return nil
+    return Double(cleanedString) ?? 0
 }
 
 
