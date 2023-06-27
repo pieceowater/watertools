@@ -55,13 +55,16 @@ public func parseNumber(_ numberString: String) -> Double? {
     formatter.locale = Locale.current
     formatter.numberStyle = .decimal
     
+    print(numberString)
     let cleanedString = numberString
         .replacingOccurrences(of: "[^0-9.,]", with: "", options: .regularExpression)
         .replacingOccurrences(of: ",", with: ".")
     
     if let number = formatter.number(from: cleanedString) {
+        print(number.doubleValue)
         return number.doubleValue
     }
+    print("nil!")
     return nil
 }
 
