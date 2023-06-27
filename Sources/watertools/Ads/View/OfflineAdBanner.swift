@@ -49,13 +49,13 @@ public struct OfflineAdBanner: View {
                         .background(.ultraThinMaterial)
                         .cornerRadius(15)
                     VStack(alignment: .leading) {
-                        Text(ad.name[locale]!)
+                        Text(ad.name[locale] ?? "")
                             .font(.title)
                             .foregroundColor(.accentColor)
                             .fontWeight(.bold)
                             .lineLimit(1)
                             .minimumScaleFactor(0.9)
-                        Text(ad.subtitle[locale]!)
+                        Text(ad.subtitle[locale] ?? "")
                             .lineLimit(1)
                             .minimumScaleFactor(0.8)
                             .font(.subheadline)
@@ -77,7 +77,7 @@ public struct OfflineAdBanner: View {
                 .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 5)
                 
                 HStack {
-                    Text(ad.caption[locale]!)
+                    Text(ad.caption[locale] ?? "")
                         .font(.caption)
                         .padding()
                         .multilineTextAlignment(.leading)
@@ -110,7 +110,7 @@ public struct OfflineAdBanner: View {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach(ad.previews[locale]!, id: \.self) { previewImage in
+                        ForEach(ad.previews[locale] ?? [], id: \.self) { previewImage in
                             Image(uiImage: UIImage(named: previewImage, in: .module, with: nil) ?? UIImage())
                                 .resizable()
                                 .frame(width: 210, height: 440)
@@ -123,7 +123,7 @@ public struct OfflineAdBanner: View {
                     .padding()
                 }
                 
-                Text(ad.description[locale]!)
+                Text(ad.description[locale] ?? "")
                     .font(.caption)
                     .multilineTextAlignment(.leading)
                     .padding()
