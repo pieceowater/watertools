@@ -8,7 +8,7 @@
 import SwiftUI
 
 public struct UpgradeAppView: View {
-    struct Offer {
+    public struct Offer {
         let productID: String
         let productName: String
         let productPrice: String
@@ -16,7 +16,7 @@ public struct UpgradeAppView: View {
         let productIcon: Image
     }
     
-    let products: [Offer] = [
+    public let products: [Offer] = [
         Offer(productID: "goalmappro", productName: "Goalmap Pro", productPrice: "$9.99", productDescription: "Full unlimited access to all app features and no ads!", productIcon: Image("GoalmapLogo"))
     ]
     
@@ -36,10 +36,10 @@ public struct UpgradeAppView: View {
         
     }
     
-    struct OfferCard: View {
-        var offer: Offer
+    public struct OfferCard: View {
+        public var offer: Offer
         
-        var body: some View {
+        public var body: some View {
             VStack{
                 offer.productIcon
                     .resizable()

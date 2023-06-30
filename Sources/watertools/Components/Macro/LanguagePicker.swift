@@ -10,18 +10,18 @@ import SwiftUI
 @available(iOS 16, *)
 public struct LanguagePicker: View {
     
-    struct Language {
+    public struct Language {
         let icon: String
         let name: String
         let code: String
     }
     
-    let languages = [
+    public let languages = [
         Language(icon: "🇺🇸", name: "English", code: "en"),
         Language(icon: "🇷🇺", name: "Русский", code: "ru")
     ]
     
-    let locale = Locale.current.language.languageCode?.identifier
+    public let locale = Locale.current.language.languageCode?.identifier
     
     public var body: some View {
         List(languages, id: \.name) { language in

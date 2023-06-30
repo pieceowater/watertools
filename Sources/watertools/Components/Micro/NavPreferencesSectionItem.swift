@@ -8,9 +8,9 @@
 import SwiftUI
 
 public struct NavPreferencesSectionItem<Destination: View>: View {
-    let title: String
-    let icon: String?
-    let destination: Destination
+    public let title: String
+    public let icon: String?
+    public let destination: Destination
     
     public var body: some View {
         NavigationLink(destination: destination) {

@@ -8,7 +8,7 @@
 import SwiftUI
 
 public struct AppIconSelector: View {
-    private let appIcons: [String] = [
+    public let appIcons: [String] = [
         "Goalmap",
         "Rocket",
         "Unicorn",
@@ -37,7 +37,7 @@ public struct AppIconSelector: View {
         }
     }
     
-    private func changeAppIcon(_ icon: String) {
+    public func changeAppIcon(_ icon: String) {
         let selectedAppIcon = icon + "AppIcon"
         print(selectedAppIcon)
         guard UIApplication.shared.supportsAlternateIcons else {

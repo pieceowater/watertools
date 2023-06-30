@@ -8,8 +8,8 @@
 import SwiftUI
 
 public struct RoundedPlusButton: View {
-    let radius: Int = 100
-    let action: () -> Void
+    public let radius: Int = 100
+    public let action: () -> Void
     
     public var body: some View {
         Button(action:{

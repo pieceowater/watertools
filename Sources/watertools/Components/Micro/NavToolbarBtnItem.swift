@@ -8,9 +8,9 @@
 import SwiftUI
 
 public struct NavToolbarBtnItem: View {
-    let title: String
-    let icon: String?
-    let action: () -> Void
+    public let title: String
+    public let icon: String?
+    public let action: () -> Void
     
     public var body: some View {
         Button {

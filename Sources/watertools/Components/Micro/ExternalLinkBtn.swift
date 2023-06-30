@@ -8,8 +8,8 @@
 import SwiftUI
 
 public struct ExternalLinkBtn: View {
-    let title: String
-    let url: URL
+    public let title: String
+    public let url: URL
     public var body: some View {
         Button(action: {
             UIApplication.shared.open(url)

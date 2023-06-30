@@ -10,14 +10,14 @@ import SwiftUI
 @available(iOS 16.0, *)
 public struct AccentColor: View {
     @Environment(\.presentationMode) var presentationMode
-    let gridItems = [
+    public let gridItems = [
         GridItem(.flexible()),
         GridItem(.flexible()),
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
     
-    @State private var selectedColor: Colors = .default
+    @State public var selectedColor: Colors = .default
     
     public var body: some View {
         ScrollView{
@@ -93,7 +93,7 @@ public struct AccentColor: View {
     }
 }
 
-enum Colors: String, CaseIterable {
+public enum Colors: String, CaseIterable {
     case `default`
     case blue
     case red
@@ -148,7 +148,7 @@ enum Colors: String, CaseIterable {
         }
     }
 }
-extension Color {
+public extension Color {
     init(hex: String) {
         var hexString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
