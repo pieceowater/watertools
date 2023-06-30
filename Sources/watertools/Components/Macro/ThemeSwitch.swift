@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ThemeSwitch: View {
+public struct ThemeSwitch: View {
     enum Theme: String {
         case light
         case dark
@@ -15,7 +15,7 @@ struct ThemeSwitch: View {
     
     @State var theme: Theme = ThemeSwitch.Theme(rawValue: UserDefaults.standard.string(forKey: "theme") ?? "light") ?? .light
     
-    var body: some View {
+    public var body: some View {
         HStack {
             Text("Light Mode")
                 .foregroundColor(.primary)

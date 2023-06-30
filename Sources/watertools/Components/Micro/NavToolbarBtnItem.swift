@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct NavToolbarBtnItem: View {
+public struct NavToolbarBtnItem: View {
     let title: String
     let icon: String?
     let action: () -> Void
     
-    var body: some View {
+    public var body: some View {
         Button {
             action()
         } label: {

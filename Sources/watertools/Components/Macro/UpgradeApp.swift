@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct UpgradeAppView: View {
+public struct UpgradeAppView: View {
     struct Offer {
         let productID: String
         let productName: String
@@ -20,7 +20,7 @@ struct UpgradeAppView: View {
         Offer(productID: "goalmappro", productName: "Goalmap Pro", productPrice: "$9.99", productDescription: "Full unlimited access to all app features and no ads!", productIcon: Image("GoalmapLogo"))
     ]
     
-    var body: some View {
+    public var body: some View {
         ScrollView {
             ForEach(products, id: \.productID){ product in
                 OfferCard(offer: product)

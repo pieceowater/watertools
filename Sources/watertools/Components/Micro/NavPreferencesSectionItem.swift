@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct NavPreferencesSectionItem<Destination: View>: View {
+public struct NavPreferencesSectionItem<Destination: View>: View {
     let title: String
     let icon: String?
     let destination: Destination
     
-    var body: some View {
+    public var body: some View {
         NavigationLink(destination: destination) {
             HStack {
                 Image(systemName: icon ?? "")

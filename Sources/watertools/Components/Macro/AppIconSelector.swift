@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AppIconSelector: View {
+public struct AppIconSelector: View {
     private let appIcons: [String] = [
         "Goalmap",
         "Rocket",
@@ -15,7 +15,7 @@ struct AppIconSelector: View {
         "Palm"
     ]
     
-    var body: some View {
+    public var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack{
                 ForEach(appIcons, id: \.self){ icon in

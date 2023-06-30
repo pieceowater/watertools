@@ -8,7 +8,7 @@
 import SwiftUI
 
 @available(iOS 16.0, *)
-struct AccentColorView: View {
+public struct AccentColor: View {
     @Environment(\.presentationMode) var presentationMode
     let gridItems = [
         GridItem(.flexible()),
@@ -19,7 +19,7 @@ struct AccentColorView: View {
     
     @State private var selectedColor: Colors = .default
     
-    var body: some View {
+    public var body: some View {
         ScrollView{
             LazyVGrid(columns: gridItems, spacing: 10) {
                 ForEach(Colors.allCases, id: \.self) { color in

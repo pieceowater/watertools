@@ -8,7 +8,7 @@
 import SwiftUI
 
 @available(iOS 16, *)
-struct LanguagePicker: View {
+public struct LanguagePicker: View {
     
     struct Language {
         let icon: String
@@ -23,7 +23,7 @@ struct LanguagePicker: View {
     
     let locale = Locale.current.language.languageCode?.identifier
     
-    var body: some View {
+    public var body: some View {
         List(languages, id: \.name) { language in
             Button(action: {
                 

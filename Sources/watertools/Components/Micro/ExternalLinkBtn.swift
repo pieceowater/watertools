@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct ExternalLinkBtn: View {
+public struct ExternalLinkBtn: View {
     let title: String
     let url: URL
-    var body: some View {
+    public var body: some View {
         Button(action: {
             UIApplication.shared.open(url)
         }) {
