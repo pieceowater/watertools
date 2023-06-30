@@ -25,9 +25,11 @@ public struct UpgradeApp: View {
         }
     }
     
-    public var products: [Offer] = []
+    public var products: [Offer]
     
-    public init() {}
+    public init(products: [Offer]) {
+        self.products = products
+    }
     
     public var body: some View {
         ScrollView {
