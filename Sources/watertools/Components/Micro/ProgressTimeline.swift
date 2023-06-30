@@ -11,7 +11,7 @@ public struct ProgressTimeline: View {
     public let checkedStepsCount: Int
     public let commonStepsCount: Int
     
-    init(checkedStepsCount: Int, commonStepsCount: Int) {
+    public init(checkedStepsCount: Int, commonStepsCount: Int) {
         self.checkedStepsCount = checkedStepsCount
         self.commonStepsCount = commonStepsCount
     }

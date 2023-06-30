@@ -15,7 +15,7 @@ public struct ProgressCard: View {
     public let checkedStepsCount: Int
     public let commonStepsCount: Int
     
-    init(icon: Image, title: String, description: String, deadline: Date, checkedStepsCount: Int, commonStepsCount: Int) {
+    public init(icon: Image, title: String, description: String, deadline: Date, checkedStepsCount: Int, commonStepsCount: Int) {
         self.icon = icon
         self.title = title
         self.description = description
