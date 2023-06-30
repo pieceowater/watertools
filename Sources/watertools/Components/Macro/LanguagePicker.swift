@@ -23,6 +23,8 @@ public struct LanguagePicker: View {
     
     public let locale = Locale.current.language.languageCode?.identifier
     
+    public init(){}
+    
     public var body: some View {
         List(languages, id: \.name) { language in
             Button(action: {

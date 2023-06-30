@@ -12,6 +12,12 @@ public struct NavToolbarBtnItem: View {
     public let icon: String?
     public let action: () -> Void
     
+    public init(title: String, icon: String?, action: @escaping () -> Void) {
+        self.title = title
+        self.icon = icon
+        self.action = action
+    }
+    
     public var body: some View {
         Button {
             action()

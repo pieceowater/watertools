@@ -20,6 +20,8 @@ public struct UpgradeAppView: View {
         Offer(productID: "goalmappro", productName: "Goalmap Pro", productPrice: "$9.99", productDescription: "Full unlimited access to all app features and no ads!", productIcon: Image("GoalmapLogo"))
     ]
     
+    public init() {}
+    
     public var body: some View {
         ScrollView {
             ForEach(products, id: \.productID){ product in

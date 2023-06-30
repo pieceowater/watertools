@@ -19,6 +19,10 @@ public struct AccentColor: View {
     
     @State public var selectedColor: Colors = .default
     
+    public init(selectedColor: Colors) {
+        self.selectedColor = selectedColor
+    }
+    
     public var body: some View {
         ScrollView{
             LazyVGrid(columns: gridItems, spacing: 10) {

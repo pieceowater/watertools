@@ -15,6 +15,8 @@ public struct AppIconSelector: View {
         "Palm"
     ]
     
+    public init(){}
+    
     public var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack{

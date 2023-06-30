@@ -12,6 +12,12 @@ public struct NavPreferencesSectionItem<Destination: View>: View {
     public let icon: String?
     public let destination: Destination
     
+    public init(title: String, icon: String?, destination: Destination) {
+        self.title = title
+        self.icon = icon
+        self.destination = destination
+    }
+    
     public var body: some View {
         NavigationLink(destination: destination) {
             HStack {

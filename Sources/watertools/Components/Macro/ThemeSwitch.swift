@@ -15,6 +15,10 @@ public struct ThemeSwitch: View {
     
     @State public var theme: Theme = ThemeSwitch.Theme(rawValue: UserDefaults.standard.string(forKey: "theme") ?? "light") ?? .light
     
+    public init(theme: Theme) {
+        self.theme = theme
+    }
+    
     public var body: some View {
         HStack {
             Text("Light Mode")
