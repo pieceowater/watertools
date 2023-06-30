@@ -8,14 +8,11 @@
 import SwiftUI
 
 public struct AppIconSelector: View {
-    public let appIcons: [String] = [
-        "Goalmap",
-        "Rocket",
-        "Unicorn",
-        "Palm"
-    ]
+    public var appIcons: [String]
     
-    public init(){}
+    public init(appIcons: [String]){
+        self.appIcons = appIcons
+    }
     
     public var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
