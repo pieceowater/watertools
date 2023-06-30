@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RoundedPlusButtonView: View {
+struct RoundedPlusButton: View {
     let radius: Int = 100
     let action: () -> Void
     
