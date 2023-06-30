@@ -14,11 +14,18 @@ public struct UpgradeApp: View {
         let productPrice: String
         let productDescription: String
         let productIcon: Image
+        
+        
+        public init(productID: String, productName: String, productPrice: String, productDescription: String, productIcon: Image) {
+            self.productID = productID
+            self.productName = productName
+            self.productPrice = productPrice
+            self.productDescription = productDescription
+            self.productIcon = productIcon
+        }
     }
     
-    public let products: [Offer] = [
-        Offer(productID: "goalmappro", productName: "Goalmap Pro", productPrice: "$9.99", productDescription: "Full unlimited access to all app features and no ads!", productIcon: Image("GoalmapLogo"))
-    ]
+    public var products: [Offer] = []
     
     public init() {}
     
@@ -54,7 +61,7 @@ public struct UpgradeApp: View {
                     .font(.subheadline)
                     .multilineTextAlignment(.center)
                     .padding(.bottom)
-                    
+                
                 Button {
                     // buy here
                 } label: {
@@ -70,7 +77,7 @@ public struct UpgradeApp: View {
                     .cornerRadius(10)
                     .padding(.horizontal)
                 }
-
+                
             }
             .padding()
             .background(.ultraThinMaterial)
