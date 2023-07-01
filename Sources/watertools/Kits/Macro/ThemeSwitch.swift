@@ -10,7 +10,6 @@ import SwiftUI
 @available(iOS 16, *)
 public struct ThemeSwitch: View {
     @EnvironmentObject var systemPreferencesManager: SystemPreferencesManager
-    @Environment(\.presentationMode) var presentationMode
     public enum Theme: String {
         case light
         case dark
@@ -40,9 +39,6 @@ public struct ThemeSwitch: View {
                     }))
                     .toggleStyle(SwitchToggleStyle(tint: .accentColor))
                     .labelsHidden()
-                    .onTapGesture {
-                        presentationMode.wrappedValue.dismiss()
-                    }
                     Image(systemName: "moon.fill")
                         .padding(.leading, 6)
                         .opacity(systemPreferencesManager.theme == .dark ? 1 : 0)
