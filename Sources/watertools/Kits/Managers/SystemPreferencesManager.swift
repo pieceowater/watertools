@@ -8,7 +8,7 @@
 import Foundation
 
 public class SystemPreferencesManager: ObservableObject {
-    public static let shared = UserSettingsManager()
+    public static let shared = SystemPreferencesManager()
     
     @Published var accentColor: Colors = .default
     @Published var theme: Theme = .light
