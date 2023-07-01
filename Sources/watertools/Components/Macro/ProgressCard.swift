@@ -46,6 +46,7 @@ public struct ProgressCard: View {
                         .lineLimit(1)
                     
                 }
+                Spacer()
             }
             HStack{
                 Image(systemName: "calendar.badge.clock")
@@ -53,13 +54,9 @@ public struct ProgressCard: View {
             }
             .font(.caption)
             .foregroundColor(.secondary)
-            .padding(.vertical, 8)
+            .padding(.ver, 8)
             
             ProgressTimeline(checkedStepsCount: checkedStepsCount, commonStepsCount: commonStepsCount)
-            
-            HStack{
-                Spacer()
-            }
         }
     }
     

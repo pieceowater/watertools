@@ -18,11 +18,13 @@ public struct ProgressTimeline: View {
     
     public var body: some View {
         GeometryReader { geometry in
-            HStack(alignment: .center, spacing: 4) {
-                ForEach(0..<commonStepsCount, id: \.self) { index in
-                    RoundedRectangle(cornerRadius: 2)
-                        .fill(index < checkedStepsCount ? Color.accentColor : Color.gray.opacity(0.4))
-                        .frame(width: ((geometry.size.width / CGFloat(commonStepsCount)) - 4.0), height: 10)
+            VStack {
+                HStack(alignment: .center, spacing: 4) {
+                    ForEach(0..<commonStepsCount, id: \.self) { index in
+                        RoundedRectangle(cornerRadius: 2)
+                            .fill(index < checkedStepsCount ? Color.accentColor : Color.gray.opacity(0.4))
+                            .frame(width: ((geometry.size.width / CGFloat(commonStepsCount)) - 4.0), height: 10)
+                    }
                 }
             }
         }
