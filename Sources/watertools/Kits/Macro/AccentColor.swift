@@ -103,6 +103,8 @@ public struct AccentColor: View {
                 ToolbarItem(placement: .navigationBarTrailing, content: {
                     NavToolbarBtnItem(title: navResetBtn, icon: "arrow.uturn.left.circle") {
                         selectedColor = .default
+                        systemPreferencesManager.accentColor = selectedColor
+                        systemPreferencesManager.saveSettings()
                         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                            let windows = windowScene.windows.first {
                             windows.tintColor = UIColor(selectedColor.color)
