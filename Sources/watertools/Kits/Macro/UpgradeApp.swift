@@ -27,8 +27,13 @@ public struct UpgradeApp: View {
     
     public var products: [Offer]
     
-    public init(products: [Offer]) {
+    let navigationTitle: String
+    let navResetBtn: String
+    
+    public init(products: [Offer], navigationTitle: String = "Upgrade to Pro", navResetBtn: String = "Restore") {
         self.products = products
+        self.navigationTitle = navigationTitle
+        self.navResetBtn = navResetBtn
     }
     
     public var body: some View {
@@ -37,10 +42,10 @@ public struct UpgradeApp: View {
                 OfferCard(offer: product)
             }
         }
-        .navigationTitle("Upgrade to Pro")
+        .navigationTitle(navigationTitle)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing, content: {
-                NavToolbarBtnItem(title: "Restore", icon: "arrow.uturn.left.circle") {
+                NavToolbarBtnItem(title: navResetBtn, icon: "arrow.uturn.left.circle") {
                 }
             })
         }
