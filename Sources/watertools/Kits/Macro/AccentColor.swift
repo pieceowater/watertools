@@ -18,15 +18,15 @@ public struct AccentColor: View {
         GridItem(.flexible())
     ]
     
-    @State public var selectedColor: Colors = .default
-    public let navigationTitle: String
-    public let previewContentTitle: String
-    public let previewContentCaption: String
-    public let previewContentBody: String
-    public let previewContentBackBtn: String
-    public let navResetBtn: String
+    @State public var selectedColor: Colors
+    let navigationTitle: String
+    let previewContentTitle: String
+    let previewContentCaption: String
+    let previewContentBody: String
+    let previewContentBackBtn: String
+    let navResetBtn: String
     
-    public init(selectedColor: Colors, navigationTitle: String = "Accent Color", previewContentTitle: String = "Preview of content", previewContentCaption: String = "Caption", previewContentBody: String = "Hit this button below and you'll return to the previous screen", previewContentBackBtn: String = "Go back", navResetBtn: String = "Reset") {
+    public init(selectedColor: Colors = .default, navigationTitle: String = "Accent Color", previewContentTitle: String = "Preview of content", previewContentCaption: String = "Caption", previewContentBody: String = "Hit this button below and you'll return to the previous screen", previewContentBackBtn: String = "Go back", navResetBtn: String = "Reset") {
         self.selectedColor = selectedColor
         self.navigationTitle = navigationTitle
         self.previewContentTitle = previewContentTitle
