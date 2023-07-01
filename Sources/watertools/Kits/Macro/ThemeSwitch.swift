@@ -8,30 +8,33 @@
 import SwiftUI
 
 public struct ThemeSwitch: View {
+    @EnvironmentObject var systemPreferencesManager: SystemPreferencesManager
     public enum Theme: String {
         case light
         case dark
     }
     
-    @State public var theme: Theme = ThemeSwitch.Theme(rawValue: UserDefaults.standard.string(forKey: "theme") ?? "light") ?? .light
+    let lightModeText: String
+    let darkModeText: String
     
-    public init(theme: Theme) {
-        self.theme = theme
+    public init(lightModeText: String = "Light Mode", darkModeText: String = "Dark Mode") {
+        self.lightModeText = lightModeText
+        self.darkModeText = darkModeText
     }
     
     public var body: some View {
         HStack {
-            Text("Light Mode")
+            Text(lightModeText)
                 .foregroundColor(.primary)
             ZStack {
                 HStack {
                     Spacer()
                     Image(systemName: "sun.max.fill")
                         .padding(.trailing, 6)
-                        .opacity(theme == .light ? 1 : 0)
-                    Toggle("", isOn: .init(get: { theme == .dark }, set: { newValue in
-                        theme = newValue ? .dark : .light
-                        UserDefaults.standard.set(theme.rawValue, forKey: "theme")
+                        .opacity(systemPreferencesManager.theme == .light ? 1 : 0)
+                    Toggle("", isOn: .init(get: { systemPreferencesManager.theme == .dark }, set: { newValue in
+                        systemPreferencesManager.theme = newValue ? .dark : .light
+                        systemPreferencesManager.saveSettings()
                     }))
                     .toggleStyle(SwitchToggleStyle(tint: .accentColor))
                     .labelsHidden()
@@ -41,8 +44,11 @@ public struct ThemeSwitch: View {
                     Spacer()
                 }.padding(.vertical, 5)
             }
-            Text("Dark Mode")
+            Text(darkModeText)
                 .foregroundColor(.primary)
+        }
+        .onAppear{
+//            theme = systemPreferencesManager.theme
         }
     }
 }
