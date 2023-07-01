@@ -53,10 +53,9 @@ public struct ProgressCard: View {
             }
             .font(.caption)
             .foregroundColor(.secondary)
-            .padding(.top, 8)
+            .padding(.vertical, 8)
             
             ProgressTimeline(checkedStepsCount: checkedStepsCount, commonStepsCount: commonStepsCount)
-                .padding(.vertical, 10)
             
             HStack{
                 Spacer()
