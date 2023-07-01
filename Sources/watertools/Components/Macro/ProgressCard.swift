@@ -54,7 +54,7 @@ public struct ProgressCard: View {
             }
             .font(.caption)
             .foregroundColor(.secondary)
-            .padding(.ver, 8)
+            .padding(.vertical, 8)
             
             ProgressTimeline(checkedStepsCount: checkedStepsCount, commonStepsCount: commonStepsCount)
         }
