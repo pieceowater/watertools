@@ -41,7 +41,7 @@ public struct UpgradeApp: View {
     public var body: some View {
         ScrollView {
             ForEach(products, id: \.productID){ product in
-                OfferCard(offer: product)
+                OfferCard(offer: product, btnTextPrefix: btnTextPrefix)
             }
         }
         .navigationTitle(navigationTitle)
@@ -56,6 +56,12 @@ public struct UpgradeApp: View {
     
     public struct OfferCard: View {
         public var offer: Offer
+        
+        let btnTextPrefix: String
+        public init(offer: Offer, btnTextPrefix: String) {
+            self.offer = offer
+            self.btnTextPrefix = btnTextPrefix
+        }
         
         public var body: some View {
             VStack{
