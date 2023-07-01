@@ -18,7 +18,7 @@ public struct ProgressTimeline: View {
     
     public var body: some View {
         GeometryReader { geometry in
-            VStack {
+            VStack{
                 HStack(alignment: .center, spacing: 4) {
                     ForEach(0..<commonStepsCount, id: \.self) { index in
                         RoundedRectangle(cornerRadius: 2)
