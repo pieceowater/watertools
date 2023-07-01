@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 16, *)
 public struct ThemeSwitch: View {
     @EnvironmentObject var systemPreferencesManager: SystemPreferencesManager
     public enum Theme: String {
@@ -40,7 +41,7 @@ public struct ThemeSwitch: View {
                     .labelsHidden()
                     Image(systemName: "moon.fill")
                         .padding(.leading, 6)
-                        .opacity(theme == .dark ? 1 : 0)
+                        .opacity(systemPreferencesManager.theme == .dark ? 1 : 0)
                     Spacer()
                 }.padding(.vertical, 5)
             }
