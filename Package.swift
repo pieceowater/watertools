@@ -13,6 +13,9 @@ let package = Package(
             name: "watertools",
             targets: ["watertools"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/googleads/swift-package-manager-google-mobile-ads.git", from: "10.7.0")
+    ],
     targets: [
         .target(
             name: "watertools",
