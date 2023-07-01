@@ -29,11 +29,13 @@ public struct UpgradeApp: View {
     
     let navigationTitle: String
     let navResetBtn: String
+    let btnTextPrefix: String
     
-    public init(products: [Offer], navigationTitle: String = "Upgrade to Pro", navResetBtn: String = "Restore") {
+    public init(products: [Offer], navigationTitle: String = "Upgrade to Pro", navResetBtn: String = "Restore", btnTextPrefix: String = "Get for") {
         self.products = products
         self.navigationTitle = navigationTitle
         self.navResetBtn = navResetBtn
+        self.btnTextPrefix = btnTextPrefix
     }
     
     public var body: some View {
@@ -74,7 +76,7 @@ public struct UpgradeApp: View {
                 } label: {
                     HStack{
                         Spacer()
-                        Text("Get for \(offer.productPrice)")
+                        Text("\(btnTextPrefix) \(offer.productPrice)")
                             .font(.headline)
                             .foregroundColor(.white)
                         Spacer()
