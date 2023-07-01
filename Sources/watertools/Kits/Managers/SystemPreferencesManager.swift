@@ -7,6 +7,7 @@
 
 import Foundation
 
+@available(iOS 16, *)
 public class SystemPreferencesManager: ObservableObject {
     public static let shared = SystemPreferencesManager()
     
