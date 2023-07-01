@@ -16,14 +16,13 @@ public struct LanguagePicker: View {
         let code: String
     }
     
-    public let languages = [
-        Language(icon: "🇺🇸", name: "English", code: "en"),
-        Language(icon: "🇷🇺", name: "Русский", code: "ru")
-    ]
+    public let languages: [Language]
     
     public let locale = Locale.current.language.languageCode?.identifier
     
-    public init(){}
+    public init(languages: [Language]) {
+        self.languages = languages
+    }
     
     public var body: some View {
         List(languages, id: \.name) { language in
