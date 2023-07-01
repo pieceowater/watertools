@@ -25,11 +25,11 @@ public struct LanguagePicker: View {
     }
     
     public let languages: [Language]
-    public let navigationTitle: String?
+    public let navigationTitle: String
     
     public let locale = Locale.current.language.languageCode?.identifier
     
-    public init(languages: [Language], navigationTitle: String?) {
+    public init(languages: [Language], navigationTitle: String = "Language") {
         self.languages = languages
         self.navigationTitle = navigationTitle
     }
@@ -48,7 +48,7 @@ public struct LanguagePicker: View {
                 }
             }
         }
-        .navigationTitle(navigationTitle ?? "Language")
+        .navigationTitle(navigationTitle)
         .alert(isPresented: $showAlert) {
             Alert(
                 title: Text("Restart Required"),
