@@ -14,6 +14,12 @@ public struct LanguagePicker: View {
         let icon: String
         let name: String
         let code: String
+        
+        public init(icon: String, name: String, code: String) {
+            self.icon = icon
+            self.name = name
+            self.code = code
+        }
     }
     
     public let languages: [Language]
@@ -42,4 +48,10 @@ public struct LanguagePicker: View {
     }
     
     
+}
+
+struct Local {
+    static func str(_ key: String) -> LocalizedStringKey {
+        return LocalizedStringKey(key)
+    }
 }
