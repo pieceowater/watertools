@@ -25,15 +25,15 @@ public struct AccentColor: View {
     let previewContentBody: String
     let previewContentBackBtn: String
     let navResetBtn: String
-    
+
     public init(navigationTitle: String = "Accent Color", previewContentTitle: String = "Preview of content", previewContentCaption: String = "Caption", previewContentBody: String = "Hit this button below and you'll return to the previous screen", previewContentBackBtn: String = "Go back", navResetBtn: String = "Reset") {
-        self.selectedColor = watertools.Colors.default
         self.navigationTitle = navigationTitle
         self.previewContentTitle = previewContentTitle
         self.previewContentCaption = previewContentCaption
         self.previewContentBody = previewContentBody
         self.previewContentBackBtn = previewContentBackBtn
         self.navResetBtn = navResetBtn
+        _selectedColor = State(initialValue: watertools.Colors.default)
     }
     
     public var body: some View {
