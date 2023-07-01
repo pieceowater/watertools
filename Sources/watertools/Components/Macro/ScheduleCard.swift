@@ -18,8 +18,9 @@ public struct ScheduleCard<Destination:View>: View {
     var weekdayContextMenuAction: (_ index: Int) -> Void
     let streak: Int
     let destination: Destination
+    let navBtnText: String
     
-    public init(icon: Image, title: String, comment: String, streak: Int = 0, weekdays: [Bool], weekdayAction: @escaping (_: Int) -> Void, weekdayContextMenuTitle: String, weekdayContextMenuAction: @escaping (_: Int) -> Void, destination: Destination) {
+    public init(icon: Image, title: String, comment: String, streak: Int = 0, weekdays: [Bool], weekdayAction: @escaping (_: Int) -> Void, weekdayContextMenuTitle: String, weekdayContextMenuAction: @escaping (_: Int) -> Void, destination: Destination, navBtnText: String) {
         self.icon = icon
         self.title = title
         self.comment = comment
@@ -29,6 +30,7 @@ public struct ScheduleCard<Destination:View>: View {
         self.weekdayContextMenuTitle = weekdayContextMenuTitle
         self.weekdayContextMenuAction = weekdayContextMenuAction
         self.destination = destination
+        self.navBtnText = navBtnText
     }
     
     public var body: some View {
@@ -56,7 +58,7 @@ public struct ScheduleCard<Destination:View>: View {
                         destination
                     } label: {
                         HStack{
-                            Text("btn_open")
+                            Text(navBtnText)
                             Image(systemName: "arrow.right")
                         }
                         .font(.subheadline)
