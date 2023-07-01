@@ -26,8 +26,8 @@ public struct AccentColor: View {
     let previewContentBackBtn: String
     let navResetBtn: String
     
-    public init(selectedColor: watertools.Colors = .default, navigationTitle: String = "Accent Color", previewContentTitle: String = "Preview of content", previewContentCaption: String = "Caption", previewContentBody: String = "Hit this button below and you'll return to the previous screen", previewContentBackBtn: String = "Go back", navResetBtn: String = "Reset") {
-        self.selectedColor = selectedColor
+    public init(navigationTitle: String = "Accent Color", previewContentTitle: String = "Preview of content", previewContentCaption: String = "Caption", previewContentBody: String = "Hit this button below and you'll return to the previous screen", previewContentBackBtn: String = "Go back", navResetBtn: String = "Reset") {
+        self.selectedColor = watertools.Colors.default
         self.navigationTitle = navigationTitle
         self.previewContentTitle = previewContentTitle
         self.previewContentCaption = previewContentCaption
