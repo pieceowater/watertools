@@ -10,6 +10,7 @@ import SwiftUI
 @available(iOS 16, *)
 public struct ThemeSwitch: View {
     @EnvironmentObject var systemPreferencesManager: SystemPreferencesManager
+    @Environment(\.presentationMode) var presentationMode
     public enum Theme: String {
         case light
         case dark
@@ -36,6 +37,7 @@ public struct ThemeSwitch: View {
                     Toggle("", isOn: .init(get: { systemPreferencesManager.theme == .dark }, set: { newValue in
                         systemPreferencesManager.theme = newValue ? .dark : .light
                         systemPreferencesManager.saveSettings()
+                        presentationMode.wrappedValue.dismiss()
                     }))
                     .toggleStyle(SwitchToggleStyle(tint: .accentColor))
                     .labelsHidden()
