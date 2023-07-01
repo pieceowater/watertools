@@ -132,7 +132,7 @@ public enum Colors: String, CaseIterable {
     case coral
     case skyBlue
     
-    var color: Color {
+    public var color: Color {
         switch self {
         case .blue:
             return .blue
