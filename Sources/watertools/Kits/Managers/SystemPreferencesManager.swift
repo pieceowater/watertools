@@ -11,9 +11,9 @@ import Foundation
 public class SystemPreferencesManager: ObservableObject {
     public static let shared = SystemPreferencesManager()
     
-    @Published var accentColor: Colors = .default
-    @Published var theme: watertools.ThemeSwitch.Theme = .light
-    @Published var selectedLanguage: watertools.LanguagePicker.Language?
+    @Published public var accentColor: Colors = .default
+    @Published public var theme: watertools.ThemeSwitch.Theme = .light
+    @Published public var selectedLanguage: watertools.LanguagePicker.Language?
     
     private init() {
         loadSettings()
