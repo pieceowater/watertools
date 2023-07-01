@@ -37,10 +37,12 @@ public struct ThemeSwitch: View {
                     Toggle("", isOn: .init(get: { systemPreferencesManager.theme == .dark }, set: { newValue in
                         systemPreferencesManager.theme = newValue ? .dark : .light
                         systemPreferencesManager.saveSettings()
-                        presentationMode.wrappedValue.dismiss()
                     }))
                     .toggleStyle(SwitchToggleStyle(tint: .accentColor))
                     .labelsHidden()
+                    .onTapGesture {
+                        presentationMode.wrappedValue.dismiss()
+                    }
                     Image(systemName: "moon.fill")
                         .padding(.leading, 6)
                         .opacity(systemPreferencesManager.theme == .dark ? 1 : 0)
