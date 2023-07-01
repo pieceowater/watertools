@@ -27,7 +27,7 @@ public struct LanguagePicker: View {
     public let languages: [Language]
     public let navigationTitle: String
     
-    public let locale = Locale.current.language.languageCode?.identifier
+    @State public var locale = Locale.current.language.languageCode?.identifier
     
     public init(languages: [Language], navigationTitle: String = "Language") {
         self.languages = languages
@@ -37,7 +37,9 @@ public struct LanguagePicker: View {
     public var body: some View {
         List(languages, id: \.name) { language in
             Button(action: {
+                showAlert = true
                 systemPreferencesManager.setLanguage(language)
+                locale = language.code
             }) {
                 HStack {
                     Text(language.icon)

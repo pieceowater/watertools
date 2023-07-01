@@ -9,6 +9,7 @@ import SwiftUI
 
 @available(iOS 16.0, *)
 public struct AccentColor: View {
+    @EnvironmentObject var systemPreferencesManager: SystemPreferencesManager
     @Environment(\.presentationMode) var presentationMode
     public let gridItems = [
         GridItem(.flexible()),
@@ -18,9 +19,21 @@ public struct AccentColor: View {
     ]
     
     @State public var selectedColor: Colors = .default
+    public let navigationTitle: String
+    public let previewContentTitle: String
+    public let previewContentCaption: String
+    public let previewContentBody: String
+    public let previewContentBackBtn: String
+    public let navResetBtn: String
     
-    public init(selectedColor: Colors) {
+    public init(selectedColor: Colors, navigationTitle: String = "Accent Color", previewContentTitle: String = "Preview of content", previewContentCaption: String = "Caption", previewContentBody: String = "Hit this button below and you'll return to the previous screen", previewContentBackBtn: String = "Go back", navResetBtn: String = "Reset") {
         self.selectedColor = selectedColor
+        self.navigationTitle = navigationTitle
+        self.previewContentTitle = previewContentTitle
+        self.previewContentCaption = previewContentCaption
+        self.previewContentBody = previewContentBody
+        self.previewContentBackBtn = previewContentBackBtn
+        self.navResetBtn = navResetBtn
     }
     
     public var body: some View {
@@ -32,8 +45,9 @@ public struct AccentColor: View {
                            let windows = windowScene.windows.first {
                             windows.tintColor = UIColor(color.color)
                         }
-                        
                         selectedColor = color
+                        systemPreferencesManager.accentColor = color
+                        systemPreferencesManager.saveSettings()
                     }) {
                         Circle()
                             .fill(color.color)
@@ -51,12 +65,12 @@ public struct AccentColor: View {
             .padding()
             
             VStack(alignment: .leading){
-                Text("Preview of content")
+                Text(previewContentTitle)
                     .font(.headline)
                     .foregroundColor(.accentColor)
-                Text("Caption")
+                Text(previewContentCaption)
                     .font(.subheadline)
-                Text("Hit this button below and you'll return to the previous screen")
+                Text(previewContentBody)
                     .font(.caption)
                     .padding(.bottom, 15)
                 
@@ -65,7 +79,7 @@ public struct AccentColor: View {
                 } label: {
                     HStack{
                         Spacer()
-                        Text("Go back")
+                        Text(previewContentBackBtn)
                             .foregroundColor(.white)
                         Spacer()
                     }
@@ -80,11 +94,14 @@ public struct AccentColor: View {
             .padding()
             
         }
-        .navigationTitle("Accent Color")
+        .onAppear{
+            selectedColor = systemPreferencesManager.accentColor
+        }
+        .navigationTitle(navigationTitle)
         .toolbar {
             if selectedColor != .default {
                 ToolbarItem(placement: .navigationBarTrailing, content: {
-                    NavToolbarBtnItem(title: "Reset", icon: "arrow.uturn.left.circle") {
+                    NavToolbarBtnItem(title: navResetBtn, icon: "arrow.uturn.left.circle") {
                         selectedColor = .default
                         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                            let windows = windowScene.windows.first {
