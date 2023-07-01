@@ -19,7 +19,7 @@ let package = Package(
     targets: [
         .target(
             name: "watertools",
-            dependencies: ["GoogleMobileAds"],
+            dependencies: ["swift-package-manager-google-mobile-ads"],
             path: "Sources",
             resources: [
                 .process("Images/Media.xcassets")
