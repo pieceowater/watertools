@@ -18,7 +18,7 @@ public struct AccentColor: View {
         GridItem(.flexible())
     ]
     
-    @State public var selectedColor: Colors
+    @State public var selectedColor: watertools.Colors
     let navigationTitle: String
     let previewContentTitle: String
     let previewContentCaption: String
@@ -26,7 +26,7 @@ public struct AccentColor: View {
     let previewContentBackBtn: String
     let navResetBtn: String
     
-    public init(selectedColor: Colors = .default, navigationTitle: String = "Accent Color", previewContentTitle: String = "Preview of content", previewContentCaption: String = "Caption", previewContentBody: String = "Hit this button below and you'll return to the previous screen", previewContentBackBtn: String = "Go back", navResetBtn: String = "Reset") {
+    public init(selectedColor: watertools.Colors = .default, navigationTitle: String = "Accent Color", previewContentTitle: String = "Preview of content", previewContentCaption: String = "Caption", previewContentBody: String = "Hit this button below and you'll return to the previous screen", previewContentBackBtn: String = "Go back", navResetBtn: String = "Reset") {
         self.selectedColor = selectedColor
         self.navigationTitle = navigationTitle
         self.previewContentTitle = previewContentTitle
@@ -39,7 +39,7 @@ public struct AccentColor: View {
     public var body: some View {
         ScrollView{
             LazyVGrid(columns: gridItems, spacing: 10) {
-                ForEach(Colors.allCases, id: \.self) { color in
+                ForEach(watertools.Colors.allCases, id: \.self) { color in
                     Button(action: {
                         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                            let windows = windowScene.windows.first {
