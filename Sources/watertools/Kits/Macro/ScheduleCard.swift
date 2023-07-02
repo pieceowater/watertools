@@ -14,8 +14,9 @@ public struct ScheduleCard<Destination:View>: View {
     var weekdays: [Bool]
 //    var weekdayNames: [String] = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     var weekdayNames: [String] = {
+        let calendar = Calendar.current
         let dateFormatter = DateFormatter()
-        let weekdays = dateFormatter.weekdaySymbols(for: .current)
+        let weekdays = calendar.weekdaySymbols
         return Array(weekdays.prefix(7))
     }()
     var weekdayAction: (_ index: Int) -> Void
