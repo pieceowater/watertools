@@ -13,8 +13,8 @@ public struct ScheduleCard<Destination:View>: View {
     let comment: String
     var weekdays: [Bool]
     var weekdayNames: [String] = {
-        let calendar = Calendar.current
-        let dateFormatter = DateFormatter()
+        var calendar = Calendar.current
+        calendar.firstWeekday = 2  // Set Monday as the first day of the week
         let weekdays = calendar.weekdaySymbols
         return Array(weekdays.prefix(7))
     }()
