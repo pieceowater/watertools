@@ -59,7 +59,7 @@ public struct IconPickerSheet: View {
         }
     }
     
-    public struct Icons: RawRepresentable {
+    public struct Icons: RawRepresentable, Hashable {
         public typealias RawValue = String
         
         public var rawValue: String
@@ -80,6 +80,7 @@ public struct IconPickerSheet: View {
             return populatedIcons
         }
     }
+
 
 
     
