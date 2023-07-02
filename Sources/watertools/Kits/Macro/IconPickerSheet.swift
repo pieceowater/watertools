@@ -31,7 +31,7 @@ public struct IconPickerSheet: View {
                 .padding(.bottom, 10)
             ScrollView {
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
-                    ForEach(iconsSet, id: \.self) { icon in
+                    ForEach(Icons.allCases, id: \.self) { icon in
                         Button(action: {
                             selectedIcon = icon.rawValue
                         }) {
