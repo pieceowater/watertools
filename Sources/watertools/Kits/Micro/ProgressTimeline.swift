@@ -25,8 +25,10 @@ public struct ProgressTimeline: View {
                             .fill(index < checkedStepsCount ? Color.accentColor : Color.gray.opacity(0.4))
                             .frame(width: ((geometry.size.width / CGFloat(commonStepsCount)) - 4.0), height: 10)
                     }
-                }
-            }
+                }.background(.green)
+            }.background(.yellow)
         }
+        .background(.red)
+        .frame(height: 10)
     }
 }
