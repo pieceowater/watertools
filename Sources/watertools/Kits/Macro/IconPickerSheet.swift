@@ -9,12 +9,14 @@ import SwiftUI
 
 public struct IconPickerSheet: View {
     @State var selectedIcon: String
+    var iconsSet: [Icons] = []
     var submitBtnText: String = "OK"
     var submitAction: (String) -> Void = {_ in }
     @Environment(\.presentationMode) var presentationMode
     
-    public init(_ selectedIcon: String, submitBtnText: String = "OK", submitAction: @escaping (String) -> Void) {
+    public init(_ selectedIcon: String, iconsSet: [Icons], submitBtnText: String = "OK", submitAction: @escaping (String) -> Void) {
         self._selectedIcon = State(initialValue: selectedIcon)
+        self.iconsSet = iconsSet
         self.submitBtnText = submitBtnText
         self.submitAction = submitAction
     }
@@ -29,7 +31,7 @@ public struct IconPickerSheet: View {
                 .padding(.bottom, 10)
             ScrollView {
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
-                    ForEach(Icons.allCases, id: \.self) { icon in
+                    ForEach(iconsSet, id: \.self) { icon in
                         Button(action: {
                             selectedIcon = icon.rawValue
                         }) {
