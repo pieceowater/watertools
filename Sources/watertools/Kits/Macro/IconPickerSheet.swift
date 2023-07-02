@@ -42,9 +42,6 @@ public struct IconPickerSheet: View {
                                 .padding(8)
                                 .background(selectedIcon == icon.rawValue ? Color.accentColor.opacity(0.2) : Color.clear)
                                 .cornerRadius(10)
-                                .onAppear{
-                                    print(icon)
-                                }
                         }
                     }
                 }
@@ -80,8 +77,4 @@ public struct IconPickerSheet: View {
             return populatedIcons
         }
     }
-
-
-
-    
 }
