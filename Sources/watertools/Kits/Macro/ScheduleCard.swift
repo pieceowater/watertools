@@ -13,7 +13,7 @@ public struct ScheduleCard<Destination:View>: View {
     let comment: String
     var weekdays: [Bool]
     var weekdayNames: [String] = {
-        let calendar = Calendar.current
+        let calendar = Calendar(identifier: .gregorian)
         let dateFormatter = DateFormatter()
         let weekdays = calendar.weekdaySymbols
         return Array(weekdays.prefix(7))
