@@ -55,6 +55,7 @@ public struct RoadmapItem: View {
                     if !item.attachmentURL.isEmpty && watertools.isValidURL(item.attachmentURL){
                         watertools.ExternalLinkBtn(title: watertools.formatURLString(item.attachmentURL) ?? "", url: URL(string: item.attachmentURL)!)
                             .lineLimit(1)
+                            .fontWeight(.bold)
                     }
                     
                     HStack(spacing: 5){
