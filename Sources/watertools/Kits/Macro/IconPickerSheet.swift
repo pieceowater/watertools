@@ -69,10 +69,13 @@ public struct IconPickerSheet: View {
         public static func populate(iconList: [String]) -> [Icons] {
             var populatedIcons: [Icons] = []
             for icon in iconList {
+                print(icon)
                 if let iconCase = Icons(rawValue: icon) {
+                    print(iconCase)
                     populatedIcons.append(iconCase)
                 }
             }
+            print(populatedIcons)
             return populatedIcons
         }
     }
