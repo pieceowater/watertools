@@ -29,6 +29,6 @@ public struct ProgressTimeline: View {
             }.background(.yellow)
         }
         .background(.red)
-        .frame(height: 10)
+//        .frame(height: 10)
     }
 }
