@@ -57,7 +57,7 @@ public struct IconPickerSheet: View {
     }
     
     public enum Icons: String, CaseIterable {
-        case: `none`
+        case `none`
         
         public var icon: String {
             return self.rawValue
