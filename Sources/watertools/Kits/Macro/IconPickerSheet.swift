@@ -59,7 +59,7 @@ public struct IconPickerSheet: View {
         }
     }
     
-    public struct Icons: RawRepresentable, CaseIterable {
+    public struct Icons: RawRepresentable {
         public typealias RawValue = String
         
         public var rawValue: String
