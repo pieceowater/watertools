@@ -11,11 +11,11 @@ public struct ProgressCard: View {
     public let icon: Image
     public let title: String
     public let description: String
-    public let deadline: Date
+    public let deadline: Date?
     public let checkedStepsCount: Int
     public let commonStepsCount: Int
     
-    public init(icon: Image, title: String, description: String, deadline: Date, checkedStepsCount: Int, commonStepsCount: Int) {
+    public init(icon: Image, title: String, description: String, deadline: Date? = nil, checkedStepsCount: Int, commonStepsCount: Int) {
         self.icon = icon
         self.title = title
         self.description = description
@@ -48,13 +48,15 @@ public struct ProgressCard: View {
                 }
                 Spacer()
             }
-            HStack{
-                Image(systemName: "calendar.badge.clock")
-                Text(watertools.formattedDate(deadline))
+            if let deadline = deadline {
+                HStack{
+                    Image(systemName: "calendar.badge.clock")
+                    Text(watertools.formattedDate(deadline))
+                }
+                .font(.caption)
+                .foregroundColor(.secondary)
+                .padding(.vertical, 8)
             }
-            .font(.caption)
-            .foregroundColor(.secondary)
-            .padding(.vertical, 8)
             
             ProgressTimeline(checkedStepsCount: checkedStepsCount, commonStepsCount: commonStepsCount)
         }
