@@ -12,7 +12,6 @@ public struct ScheduleCard<Destination:View>: View {
     let title: String
     let comment: String
     var weekdays: [Bool]
-//    var weekdayNames: [String] = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     var weekdayNames: [String] = {
         let calendar = Calendar.current
         let dateFormatter = DateFormatter()
@@ -90,7 +89,7 @@ public struct ScheduleCard<Destination:View>: View {
                     Button(action: {
                         weekdayAction(index)
                     }) {
-                        Text(weekdayNames[index])
+                        Text(weekdayNames[index].prefix(3))
                             .font(.subheadline)
                             .minimumScaleFactor(0.5)
                             .lineLimit(1)
