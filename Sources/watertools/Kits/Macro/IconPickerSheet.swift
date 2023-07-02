@@ -56,4 +56,21 @@ public struct IconPickerSheet: View {
         }
     }
     
+    public enum Icons: String, CaseIterable {
+        public var icon: String {
+            return self.rawValue
+        }
+        
+        public static func populate(iconList: [String]) -> [Icons] {
+            var populatedIcons: [Icons] = []
+            for icon in iconList {
+                if let iconCase = Icons(rawValue: icon) {
+                    populatedIcons.append(iconCase)
+                }
+            }
+            return populatedIcons
+        }
+    }
+
+    
 }
