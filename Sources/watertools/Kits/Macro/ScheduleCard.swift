@@ -12,7 +12,12 @@ public struct ScheduleCard<Destination:View>: View {
     let title: String
     let comment: String
     var weekdays: [Bool]
-    var weekdayNames: [String] = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+//    var weekdayNames: [String] = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    var weekdayNames: [String] = {
+        let dateFormatter = DateFormatter()
+        let weekdays = dateFormatter.weekdaySymbols(for: .current)
+        return Array(weekdays.prefix(7))
+    }()
     var weekdayAction: (_ index: Int) -> Void
     let weekdayContextMenuTitle: String
     var weekdayContextMenuAction: (_ index: Int) -> Void
