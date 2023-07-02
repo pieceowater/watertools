@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 16.0, *)
 public struct RoadmapItem: View {
     var item: Model
     var isFirst: Bool
