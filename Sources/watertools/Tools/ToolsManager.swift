@@ -85,4 +85,35 @@ public func formattedDate(_ date: Date) -> String {
     return formatter.string(from: date)
 }
 
+public func isValidURL(_ urlString: String) -> Bool {
+    if let url = URL(string: urlString) {
+        return UIApplication.shared.canOpenURL(url)
+    }
+    return false
+}
 
+public func formatURLString(_ urlString: String) -> String? {
+    if let url = URL(string: urlString),
+        let host = url.host {
+        
+        var formattedString = urlString
+        
+        if formattedString.hasPrefix("http://") {
+            formattedString = String(formattedString.dropFirst(7))
+        } else if formattedString.hasPrefix("https://") {
+            formattedString = String(formattedString.dropFirst(8))
+        }
+        
+        if let query = url.query {
+            formattedString += "?\(query)"
+        }
+        
+        if let fragment = url.fragment {
+            formattedString += "#\(fragment)"
+        }
+        
+        return formattedString
+    }
+    
+    return nil
+}
