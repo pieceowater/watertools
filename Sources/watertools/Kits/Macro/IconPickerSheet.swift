@@ -59,8 +59,14 @@ public struct IconPickerSheet: View {
         }
     }
     
-    public enum Icons: String, CaseIterable {
-        case `none`
+    public struct Icons: RawRepresentable, CaseIterable {
+        public typealias RawValue = String
+        
+        public var rawValue: String
+        
+        public init(rawValue: String) {
+            self.rawValue = rawValue
+        }
         
         public var icon: String {
             return self.rawValue
@@ -68,17 +74,13 @@ public struct IconPickerSheet: View {
         
         public static func populate(iconList: [String]) -> [Icons] {
             let populatedIcons: [Icons] = iconList.compactMap { iconName in
-                print(iconName)
-                guard let iconCase = Icons(rawValue: iconName) else {
-                    return nil
-                }
-                print(iconCase)
+                let iconCase = Icons(rawValue: iconName)
                 return iconCase
             }
-            print(populatedIcons)
             return populatedIcons
         }
     }
+
 
     
 }
