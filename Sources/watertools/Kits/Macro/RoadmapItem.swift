@@ -12,9 +12,9 @@ public struct RoadmapItem: View {
     var item: Model
     var isFirst: Bool
     var isLast: Bool
-    var action: () -> Void
+    var action: (() -> Void)?
     
-    public init(item: Model, isFirst: Bool, isLast: Bool, action: @escaping () -> Void) {
+    public init(item: Model, isFirst: Bool, isLast: Bool, action: (() -> Void)? = nil) {
         self.item = item
         self.isFirst = isFirst
         self.isLast = isLast
@@ -39,6 +39,16 @@ public struct RoadmapItem: View {
                     .opacity(!isLast ? 1 : 0)
                 
             }
+            if let action = action {
+                Button{
+                    action()
+                } label: {
+                    Text("BTN")
+                }
+            } else {
+                Text("NAV")
+            }
+            /*
             Button{
                 action()
             } label: {
@@ -76,6 +86,7 @@ public struct RoadmapItem: View {
             .cornerRadius(10)
             .padding(.vertical, 10)
             .padding(.trailing, 10)
+             */
         }
     }
     
