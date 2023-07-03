@@ -64,7 +64,7 @@ public struct ScheduleCard<Destination:View>: View {
                             destination
                         } label: {
                             HStack{
-                                Text(navBtnText)
+                                Text(navBtnText ?? "Go to")
                                 Image(systemName: "arrow.right")
                             }
                             .font(.subheadline)
