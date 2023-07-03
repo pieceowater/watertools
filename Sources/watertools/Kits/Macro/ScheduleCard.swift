@@ -10,7 +10,7 @@ import SwiftUI
 public struct ScheduleCard<Destination:View>: View {
     let icon: Image
     let title: String
-    let comment: String
+    let comment: String?
     var weekdays: [Bool]?
     var weekdayNames: [String] = {
         let calendar = Calendar.current
@@ -25,7 +25,7 @@ public struct ScheduleCard<Destination:View>: View {
     let destination: Destination?
     let navBtnText: String?
     
-    public init(icon: Image, title: String, comment: String, streak: Int = 0, weekdays: [Bool]? = nil, weekdayAction: ((_: Int) -> Void)? = nil, weekdayContextMenuTitle: String? = nil, weekdayContextMenuAction: ((_: Int) -> Void)? = nil, destination: Destination? = nil, navBtnText: String? = nil) {
+    public init(icon: Image, title: String, comment: String? = nil, streak: Int = 0, weekdays: [Bool]? = nil, weekdayAction: ((_: Int) -> Void)? = nil, weekdayContextMenuTitle: String? = nil, weekdayContextMenuAction: ((_: Int) -> Void)? = nil, destination: Destination? = nil, navBtnText: String? = nil) {
         self.icon = icon
         self.title = title
         self.comment = comment
@@ -52,12 +52,13 @@ public struct ScheduleCard<Destination:View>: View {
                         .padding(.top, 8)
                         .minimumScaleFactor(0.5)
                         .lineLimit(1)
-                    
-                    Text(comment)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                        .minimumScaleFactor(0.5)
-                        .lineLimit(1)
+                    if let comment = comment {
+                        Text(comment)
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                            .minimumScaleFactor(0.5)
+                            .lineLimit(1)
+                    }
                     if let destination,
                        (navBtnText != nil) {
                         NavigationLink {
