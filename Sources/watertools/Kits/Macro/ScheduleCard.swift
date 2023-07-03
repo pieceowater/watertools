@@ -59,7 +59,7 @@ public struct ScheduleCard<Destination:View>: View {
                         .minimumScaleFactor(0.5)
                         .lineLimit(1)
                     if let destination,
-                       navBtnText {
+                       (navBtnText != nil) {
                         NavigationLink {
                             destination
                         } label: {
