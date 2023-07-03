@@ -126,7 +126,7 @@ public struct RoadmapItem: View {
     }
     
     public struct RoadmapItemCard: View {
-        @Binding var item: Model
+        var item: Model
         
         public init(item: Model) {
             self.item = item
