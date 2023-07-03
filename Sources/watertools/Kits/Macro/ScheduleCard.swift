@@ -11,7 +11,7 @@ public struct ScheduleCard<Destination:View>: View {
     let icon: Image
     let title: String
     let comment: String
-    var weekdays: [Bool]
+    var weekdays: [Bool]?
     var weekdayNames: [String] = {
         let calendar = Calendar.current
         let dateFormatter = DateFormatter()
@@ -25,7 +25,7 @@ public struct ScheduleCard<Destination:View>: View {
     let destination: Destination?
     let navBtnText: String?
     
-    public init(icon: Image, title: String, comment: String, streak: Int = 0, weekdays: [Bool], weekdayAction: ((_: Int) -> Void)? = nil, weekdayContextMenuTitle: String? = nil, weekdayContextMenuAction: ((_: Int) -> Void)? = nil, destination: Destination? = nil, navBtnText: String? = nil) {
+    public init(icon: Image, title: String, comment: String, streak: Int = 0, weekdays: [Bool]? = nil, weekdayAction: ((_: Int) -> Void)? = nil, weekdayContextMenuTitle: String? = nil, weekdayContextMenuAction: ((_: Int) -> Void)? = nil, destination: Destination? = nil, navBtnText: String? = nil) {
         self.icon = icon
         self.title = title
         self.comment = comment
@@ -85,36 +85,37 @@ public struct ScheduleCard<Destination:View>: View {
                 }
             }
             .padding(.bottom)
-            
-            HStack(spacing: 5) {
-                ForEach(0..<weekdays.count, id: \.self) { index in
-                    
-                    Text(weekdayNames[index].prefix(3))
-                        .font(.subheadline)
-                        .minimumScaleFactor(0.5)
-                        .lineLimit(1)
-                        .foregroundColor(weekdays[index] ? .accentColor : .gray)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(weekdays[index] ? Color.accentColor.opacity(0.15) : Color.gray.opacity(0.15))
-                        )
-                        .onTapGesture {
-                            if let weekdayAction = weekdayAction {
-                                weekdayAction(index)
-                            }
-                        }
-                        .contextMenu {
-                            if let weekdayContextMenuTitle,
-                               let weekdayContextMenuAction {
-                                Button {
-                                    weekdayContextMenuAction(index)
-                                } label: {
-                                    Text(weekdayContextMenuTitle)
+            if let weekdays = weekdays {
+                HStack(spacing: 5) {
+                    ForEach(0..<weekdays.count, id: \.self) { index in
+                        
+                        Text(weekdayNames[index].prefix(3))
+                            .font(.subheadline)
+                            .minimumScaleFactor(0.5)
+                            .lineLimit(1)
+                            .foregroundColor(weekdays[index] ? .accentColor : .gray)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(weekdays[index] ? Color.accentColor.opacity(0.15) : Color.gray.opacity(0.15))
+                            )
+                            .onTapGesture {
+                                if let weekdayAction = weekdayAction {
+                                    weekdayAction(index)
                                 }
                             }
-                        }
+                            .contextMenu {
+                                if let weekdayContextMenuTitle,
+                                   let weekdayContextMenuAction {
+                                    Button {
+                                        weekdayContextMenuAction(index)
+                                    } label: {
+                                        Text(weekdayContextMenuTitle)
+                                    }
+                                }
+                            }
+                    }
                 }
             }
         }
