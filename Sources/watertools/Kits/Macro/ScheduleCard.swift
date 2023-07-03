@@ -31,11 +31,11 @@ public struct ScheduleCard<Destination:View>: View {
         self.comment = comment
         self.streak = streak
         self.weekdays = weekdays
-        self.weekdayAction = weekdayAction?
-        self.weekdayContextMenuTitle = weekdayContextMenuTitle?
-        self.weekdayContextMenuAction = weekdayContextMenuAction?
-        self.destination = destination?
-        self.navBtnText = navBtnText?
+        self.weekdayAction = weekdayAction
+        self.weekdayContextMenuTitle = weekdayContextMenuTitle
+        self.weekdayContextMenuAction = weekdayContextMenuAction
+        self.destination = destination
+        self.navBtnText = navBtnText
     }
     
     public var body: some View {
