@@ -66,45 +66,6 @@ public struct RoadmapItem: View {
                     .padding(.vertical, 10)
                     .padding(.trailing, 10)
             }
-            /*
-            Button{
-                action()
-            } label: {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text(item.title)
-                        .font(.headline)
-                        .foregroundColor(.accentColor)
-                        .multilineTextAlignment(.leading)
-                    
-                    Text(item.description)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.leading)
-                    
-                    if !item.attachmentURL.isEmpty && watertools.isValidURL(item.attachmentURL){
-                        watertools.ExternalLinkBtn(title: watertools.formatURLString(item.attachmentURL) ?? "", url: URL(string: item.attachmentURL)!)
-                            .lineLimit(1)
-                            .fontWeight(.bold)
-                    }
-                    
-                    HStack(spacing: 5){
-                        Image(systemName: "calendar")
-                        Text(watertools.formatDate(item.deadline))
-                        Spacer()
-                    }.font(.caption)
-                        .foregroundColor(.secondary)
-                }
-            }
-            .padding()
-            .background(.ultraThinMaterial)
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .strokeBorder(item.state ? Color.accentColor : Color.clear, lineWidth: 1)
-            )
-            .cornerRadius(10)
-            .padding(.vertical, 10)
-            .padding(.trailing, 10)
-             */
         }
     }
     
