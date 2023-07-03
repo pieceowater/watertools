@@ -25,7 +25,7 @@ public struct ScheduleCard<Destination:View>: View {
     let destination: Destination?
     let navBtnText: String?
     
-    public init(icon: Image, title: String, comment: String, streak: Int = 0, weekdays: [Bool], weekdayAction: @escaping ((_: Int) -> Void)? = nil, weekdayContextMenuTitle: String? = nil, weekdayContextMenuAction: @escaping ((_: Int) -> Void)? = nil, destination: Destination? = nil, navBtnText: String? = nil) {
+    public init(icon: Image, title: String, comment: String, streak: Int = 0, weekdays: [Bool], weekdayAction: ((_: Int) -> Void)? = nil, weekdayContextMenuTitle: String? = nil, weekdayContextMenuAction: ((_: Int) -> Void)? = nil, destination: Destination? = nil, navBtnText: String? = nil) {
         self.icon = icon
         self.title = title
         self.comment = comment
