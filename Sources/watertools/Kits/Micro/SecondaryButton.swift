@@ -22,7 +22,6 @@ public struct SecondaryButton: View {
         }) {
             Text(text)
                 .font(.subheadline)
-                .foregroundColor(.accentColor)
                 .padding()
                 
         }
