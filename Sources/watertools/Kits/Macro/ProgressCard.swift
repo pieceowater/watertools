@@ -38,12 +38,13 @@ public struct ProgressCard: View {
                         .padding(.top, 8)
                         .minimumScaleFactor(0.5)
                         .lineLimit(1)
-                    
-                    Text(description)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                        .minimumScaleFactor(0.5)
-                        .lineLimit(1)
+                    if !description.isEmpty {
+                        Text(description)
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                            .minimumScaleFactor(0.5)
+                            .lineLimit(1)
+                    }
                     
                 }
                 Spacer()
