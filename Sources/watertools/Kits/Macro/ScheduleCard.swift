@@ -52,7 +52,8 @@ public struct ScheduleCard<Destination:View>: View {
                         .padding(.top, 8)
                         .minimumScaleFactor(0.5)
                         .lineLimit(1)
-                    if let comment = comment {
+                    if let comment = comment,
+                       !comment.isEmpty{
                         Text(comment)
                             .font(.subheadline)
                             .foregroundColor(.secondary)

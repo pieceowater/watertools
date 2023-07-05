@@ -100,10 +100,12 @@ public struct RoadmapItem: View {
                     .foregroundColor(.accentColor)
                     .multilineTextAlignment(.leading)
                 
-                Text(item.description)
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.leading)
+                if !item.description.isEmpty{
+                    Text(item.description)
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.leading)
+                }
                 
                 if !item.attachmentURL.isEmpty && watertools.isValidURL(item.attachmentURL){
                     watertools.ExternalLinkBtn(title: watertools.formatURLString(item.attachmentURL) ?? "", url: URL(string: item.attachmentURL)!)
