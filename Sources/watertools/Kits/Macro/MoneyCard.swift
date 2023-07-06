@@ -28,8 +28,6 @@ public struct MoneyCard: View {
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 50, height: 50)
                     .padding(10)
-                    .background(.ultraThinMaterial)
-                    .cornerRadius(10)
 
                 VStack(alignment: .leading){
                     Text(title)
