@@ -18,7 +18,7 @@ public struct ThemeSwitch: View {
     let lightModeText: String
     let darkModeText: String
     
-    public init(lightModeText: String = "Light Mode", darkModeText: String = "Dark Mode") {
+    public init(lightModeText: String = "Light", darkModeText: String = "Dark") {
         self.lightModeText = lightModeText
         self.darkModeText = darkModeText
     }
