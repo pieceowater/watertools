@@ -13,10 +13,11 @@ public final class AdMobInterstitial: NSObject, GADFullScreenContentDelegate {
     public var interstitialAd: GADInterstitialAd?
     public let interstitialAdID: String?
     public let offlineAdView: OfflineAdBanner
+    private var offlineAdController: UIHostingController<OfflineAdBanner>?
 
     public init(_ interstitialAdName: String) {
         self.interstitialAdID = getAdID(interstitialAdName)
-        self.offlineAdView = OfflineAdBanner(currentAppId: 2) // Provide your desired currentAppId value here
+        self.offlineAdView = OfflineAdBanner(currentAppId: 2, onClose: {self.dismissOfflineAd()})
         super.init()
     }
 
@@ -66,13 +67,18 @@ public final class AdMobInterstitial: NSObject, GADFullScreenContentDelegate {
               let window = windowScene.windows.first else {
             return
         }
-        
-        let hostingController = UIHostingController(rootView: offlineAdView)
-        hostingController.view.frame = window.bounds
-        window.addSubview(hostingController.view)
-        window.rootViewController?.addChild(hostingController)
-        hostingController.didMove(toParent: window.rootViewController)
+
+        offlineAdController = UIHostingController(rootView: offlineAdView)
+        offlineAdController?.view.frame = window.bounds
+        window.addSubview(offlineAdController!.view)
+        window.rootViewController?.addChild(offlineAdController!)
+        offlineAdController?.didMove(toParent: window.rootViewController)
+    }
+
+    public func dismissOfflineAd() {
+        offlineAdController?.willMove(toParent: nil)
+        offlineAdController?.view.removeFromSuperview()
+        offlineAdController?.removeFromParent()
+        offlineAdController = nil
     }
 }
-
-
