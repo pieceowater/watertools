@@ -17,6 +17,7 @@ public final class AdMobInterstitial: NSObject, GADFullScreenContentDelegate {
     public lazy var offlineAdView: OfflineAdBanner = {
         OfflineAdBanner(currentAppId: 2, onClose: { [weak self] in
             self?.dismissOfflineAd()
+            print("DISMISS 1")
         })
     }()
 
@@ -80,6 +81,7 @@ public final class AdMobInterstitial: NSObject, GADFullScreenContentDelegate {
     }
 
     public func dismissOfflineAd() {
+        print("DISMISS 2")
         offlineAdController?.willMove(toParent: nil)
         offlineAdController?.view.removeFromSuperview()
         offlineAdController?.removeFromParent()
