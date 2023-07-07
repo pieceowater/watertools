@@ -9,6 +9,17 @@ import Foundation
 import GoogleMobileAds
 import UIKit
 
+public func getAdID(_ plistKey: String) -> String {
+    guard let plistURL = Bundle.main.url(forResource: "Ads", withExtension: "plist"),
+          let plistData = try? Data(contentsOf: plistURL),
+          let plistDictionary = try? PropertyListSerialization.propertyList(from: plistData, options: [], format: nil) as? [String: Any],
+          let bannerID = plistDictionary[plistKey] as? String
+    else {
+        return ""
+    }
+    return bannerID
+}
+
 //public final class GoogleAdManager: NSObject, GADFullScreenContentDelegate {
 //    public var rewardedAd: GADRewardedAd?
 //    public var rewardFunction: (() -> Void)? = nil

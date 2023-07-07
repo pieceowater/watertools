@@ -33,16 +33,16 @@ public struct AdMobBannerVC: UIViewControllerRepresentable {
 }
 
 public struct AdMobBanner: View {
-    let bannerID: String
+    let bannerName: String
     
-    public init(_ bannerID: String) {
-        self.bannerID = bannerID
+    public init(_ bannerName: String) {
+        self.bannerName = bannerName
     }
     
     public var body: some View {
         HStack {
             Spacer()
-            AdMobBannerVC(bannerID)
+            AdMobBannerVC(watertools.getAdID(bannerName))
             Spacer()
         }
     }
