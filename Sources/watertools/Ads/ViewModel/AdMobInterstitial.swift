@@ -12,18 +12,11 @@ import UIKit
 public final class AdMobInterstitial: NSObject, GADFullScreenContentDelegate {
     public var interstitialAd: GADInterstitialAd?
     public let interstitialAdID: String?
-    private var offlineAdController: UIHostingController<OfflineAdBanner>?
-
-    public lazy var offlineAdView: OfflineAdBanner = {
-        OfflineAdBanner(currentAppId: 2, onClose: { [weak self] in
-            print("DISMISS 0")
-            self?.dismissOfflineAd()
-            print("DISMISS 1")
-        })
-    }()
+    public let offlineAdView: OfflineAdBanner
 
     public init(_ interstitialAdName: String) {
         self.interstitialAdID = getAdID(interstitialAdName)
+        self.offlineAdView = OfflineAdBanner(currentAppId: 2) // Provide your desired currentAppId value here
         super.init()
     }
 
@@ -68,24 +61,43 @@ public final class AdMobInterstitial: NSObject, GADFullScreenContentDelegate {
         }
     }
 
-    private func showOfflineAd() {
+    public func showOfflineAd() {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-              let window = windowScene.windows.first else {
+              let window = windowScene.windows.first,
+              let rootViewController = window.rootViewController else {
             return
         }
 
-        offlineAdController = UIHostingController(rootView: offlineAdView)
-        offlineAdController?.view.frame = window.bounds
-        window.addSubview(offlineAdController!.view)
-        window.rootViewController?.addChild(offlineAdController!)
-        offlineAdController?.didMove(toParent: window.rootViewController)
+        let contentView = OfflineAdBanner(currentAppId: 2, onClose: { self.dismissOfflineAd() })
+
+        let hostingController = UIHostingController(rootView: NavigationView {
+            contentView
+                .overlay(content: {
+                    Button(action: {
+                        self.dismissOfflineAd()
+                    }) {
+                        Text("Dismiss")
+                    }
+                })
+                .navigationBarItems(trailing: Button(action: {
+                    self.dismissOfflineAd()
+                }) {
+                    Text("Dismiss")
+                })
+        })
+
+        hostingController.view.frame = window.bounds
+        window.addSubview(hostingController.view)
+        rootViewController.addChild(hostingController)
+        hostingController.didMove(toParent: rootViewController)
     }
 
     public func dismissOfflineAd() {
-        print("DISMISS 2")
         offlineAdController?.willMove(toParent: nil)
         offlineAdController?.view.removeFromSuperview()
         offlineAdController?.removeFromParent()
         offlineAdController = nil
     }
 }
+
+
