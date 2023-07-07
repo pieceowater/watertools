@@ -39,7 +39,7 @@ public final class AdMobReward: NSObject, GADFullScreenContentDelegate {
         }
     }
 
-    public func showRewardedAd() {
+    public func showRewardedAd(rewardFunction: @escaping (_ reward: GADAdReward) -> Void){
         LoadRewarded { [weak self] result in
             switch result {
             case .success:
@@ -49,7 +49,13 @@ public final class AdMobReward: NSObject, GADFullScreenContentDelegate {
                     return
                 }
                 if let ad = self?.rewardedAd {
-                    ad.present(fromRootViewController: root)
+//                    ad.present(fromRootViewController: root)
+                    ad.present(fromRootViewController: root!,
+                               userDidEarnRewardHandler: {
+                                    let reward = ad.adReward
+                                    rewardFunction(reward)
+                                }
+                               )
                 } else {
 //                    self?.showOfflineAd()
                 }
