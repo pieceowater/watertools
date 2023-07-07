@@ -16,6 +16,7 @@ public final class AdMobInterstitial: NSObject, GADFullScreenContentDelegate {
 
     public lazy var offlineAdView: OfflineAdBanner = {
         OfflineAdBanner(currentAppId: 2, onClose: { [weak self] in
+            print("DISMISS 0")
             self?.dismissOfflineAd()
             print("DISMISS 1")
         })

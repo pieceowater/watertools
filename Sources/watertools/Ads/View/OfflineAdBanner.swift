@@ -180,7 +180,7 @@ public struct OfflineAdBanner: View {
     }
     
     private func closeAd() {
-        presentationMode.wrappedValue.dismiss()
+//        presentationMode.wrappedValue.dismiss()
         onClose()
     }
 }
