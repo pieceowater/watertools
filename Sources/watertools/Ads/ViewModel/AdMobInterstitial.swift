@@ -38,7 +38,7 @@ public final class AdMobInterstitial: NSObject, GADFullScreenContentDelegate {
         }
     }
 
-    public func showInterstitialAd() -> Bool {
+    public func showInterstitialAd() {
         loadInterstitial { [weak self] result in
             switch result {
             case .success:
