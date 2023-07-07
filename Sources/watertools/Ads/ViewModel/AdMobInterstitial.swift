@@ -39,7 +39,7 @@ public final class AdMobInterstitial: NSObject, GADFullScreenContentDelegate {
     }
 
     public func showInterstitialAd() -> Bool {
-        loadInterstitial { [weak self] result in
+        return loadInterstitial { [weak self] result in
             switch result {
             case .success:
                 guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
