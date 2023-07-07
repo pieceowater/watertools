@@ -12,9 +12,11 @@ import UIKit
 public final class AdMobInterstitial: NSObject, GADFullScreenContentDelegate {
     public var interstitialAd: GADInterstitialAd?
     public let interstitialAdID: String?
+    public let offlineAdView: OfflineAdBanner
 
     public init(_ interstitialAdName: String) {
         self.interstitialAdID = getAdID(interstitialAdName)
+        self.offlineAdView = OfflineAdBanner(currentAppId: 2) // Provide your desired currentAppId value here
         super.init()
     }
 
@@ -50,12 +52,27 @@ public final class AdMobInterstitial: NSObject, GADFullScreenContentDelegate {
                 if let ad = self?.interstitialAd {
                     ad.present(fromRootViewController: root)
                 } else {
-                    print("Ad wasn't ready")
+                    self?.showOfflineAd()
                 }
             case .failure(let error):
                 print("Interstitial ad failed to load with error: \(error.localizedDescription)")
+                self?.showOfflineAd()
             }
         }
     }
+
+    private func showOfflineAd() {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first else {
+            return
+        }
+        
+        let hostingController = UIHostingController(rootView: offlineAdView)
+        hostingController.view.frame = window.bounds
+        window.addSubview(hostingController.view)
+        window.rootViewController?.addChild(hostingController)
+        hostingController.didMove(toParent: window.rootViewController)
+    }
 }
+
 
