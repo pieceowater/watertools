@@ -12,7 +12,7 @@ import UIKit
 public final class AdMobInterstitial: NSObject, GADFullScreenContentDelegate {
     public var interstitialAd: GADInterstitialAd?
     public let interstitialAdID: String?
-//    public let offlineAdView: OfflineAdBanner
+    public let offlineAdView: OfflineAdBanner
 
     public init(_ interstitialAdName: String) {
         self.interstitialAdID = getAdID(interstitialAdName)
@@ -52,52 +52,27 @@ public final class AdMobInterstitial: NSObject, GADFullScreenContentDelegate {
                 if let ad = self?.interstitialAd {
                     ad.present(fromRootViewController: root)
                 } else {
-                    self?.showOfflineAd()
+//                    self?.showOfflineAd()
                 }
             case .failure(let error):
                 print("Interstitial ad failed to load with error: \(error.localizedDescription)")
-                self?.showOfflineAd()
+//                self?.showOfflineAd()
             }
         }
     }
 
-    public func showOfflineAd() {
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-              let window = windowScene.windows.first,
-              let rootViewController = window.rootViewController else {
-            return
-        }
-
-        let contentView = OfflineAdBanner(currentAppId: 2, onClose: { self.dismissOfflineAd() })
-
-        let hostingController = UIHostingController(rootView: NavigationView {
-            contentView
-                .overlay(content: {
-                    Button(action: {
-                        self.dismissOfflineAd()
-                    }) {
-                        Text("Dismiss")
-                    }
-                })
-                .navigationBarItems(trailing: Button(action: {
-                    self.dismissOfflineAd()
-                }) {
-                    Text("Dismiss")
-                })
-        })
-
-        hostingController.view.frame = window.bounds
-        window.addSubview(hostingController.view)
-        rootViewController.addChild(hostingController)
-        hostingController.didMove(toParent: rootViewController)
-    }
-
-    public func dismissOfflineAd() {
-        offlineAdController?.willMove(toParent: nil)
-        offlineAdController?.view.removeFromSuperview()
-        offlineAdController?.removeFromParent()
-        offlineAdController = nil
-    }
+//    private func showOfflineAd() {
+//        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+//              let window = windowScene.windows.first else {
+//            return
+//        }
+//        
+//        let hostingController = UIHostingController(rootView: offlineAdView)
+//        hostingController.view.frame = window.bounds
+//        window.addSubview(hostingController.view)
+//        window.rootViewController?.addChild(hostingController)
+//        hostingController.didMove(toParent: window.rootViewController)
+//    }
 }
 
 

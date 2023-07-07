@@ -13,7 +13,6 @@ public struct OfflineAdBanner: View {
     @State public var counter = 5
     @State public var timer: Timer?
     @State public var closeAllowed: Bool = false
-    let onClose: () -> Void
     
     let githubURL = URL(string: "https://github.com/pieceowater")!
     let linkedinURL = URL(string: "https://www.linkedin.com/in/pieceowater/")!
@@ -22,9 +21,8 @@ public struct OfflineAdBanner: View {
     
     var locale = Locale.current.languageCode!
     @Environment(\.presentationMode) public var presentationMode
-    public init(currentAppId: Int, onClose: @escaping () -> Void) {
+    public init(currentAppId: Int) {
         self.ad = MyApps.filter({ $0.id != currentAppId }).randomElement()!
-        self.onClose = onClose
     }
     public var body: some View {
         ScrollView {
@@ -181,6 +179,5 @@ public struct OfflineAdBanner: View {
     
     private func closeAd() {
         presentationMode.wrappedValue.dismiss()
-        onClose()
     }
 }
