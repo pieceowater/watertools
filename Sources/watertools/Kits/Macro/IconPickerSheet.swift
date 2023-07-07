@@ -23,12 +23,17 @@ public struct IconPickerSheet: View {
     
     public var body: some View {
         VStack{
-            Rectangle()
-                .frame(width: 100, height: 5)
-                .foregroundColor(Color.gray)
-                .cornerRadius(5)
-                .padding(.top, 15)
-                .padding(.bottom, 10)
+            if #available(iOS 16, *) {
+                // iOS 16 or higher, do nothing
+            } else {
+                Rectangle()
+                    .frame(width: 100, height: 5)
+                    .foregroundColor(Color.gray)
+                    .cornerRadius(5)
+                    .padding(.top, 15)
+                    .padding(.bottom, 10)
+            }
+            
             ScrollView {
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
                     ForEach(iconsSet, id: \.self) { icon in
@@ -52,7 +57,7 @@ public struct IconPickerSheet: View {
                 submitAction(selectedIcon)
                 presentationMode.wrappedValue.dismiss()
             }.padding(.horizontal)
-
+            
         }
     }
     
