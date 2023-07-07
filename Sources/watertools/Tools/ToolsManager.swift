@@ -12,8 +12,7 @@ import SwiftUI
 
 public func formatDate(_ date: Date) -> String {
     let formatter = DateFormatter()
-    formatter.dateStyle = .medium
-    formatter.timeStyle = .short
+    formatter.dateFormat = "h:mm a, MMM d, yy"
     return formatter.string(from: date)
 }
 
