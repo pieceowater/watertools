@@ -9,7 +9,7 @@ import SwiftUI
 import GoogleMobileAds
 import UIKit
 
-final public class AdMobBannerVC: UIViewControllerRepresentable  {
+public struct AdMobBannerVC: UIViewControllerRepresentable {
     let bannerID: String
     
     public init(_ bannerID: String) {
@@ -32,15 +32,15 @@ final public class AdMobBannerVC: UIViewControllerRepresentable  {
     public func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 }
 
-public struct AdMobBanner:View{
+public struct AdMobBanner: View {
     let bannerID: String
     
     public init(_ bannerID: String) {
         self.bannerID = bannerID
     }
     
-    public var body: some View{
-        HStack{
+    public var body: some View {
+        HStack {
             Spacer()
             AdMobBannerVC(bannerID).frame(width: 320, height: 50, alignment: .center)
             Spacer()
