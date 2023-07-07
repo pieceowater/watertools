@@ -12,11 +12,11 @@ import UIKit
 public final class AdMobInterstitial: NSObject, GADFullScreenContentDelegate {
     public var interstitialAd: GADInterstitialAd?
     public let interstitialAdID: String?
-    public let offlineAdView: OfflineAdBanner
+//    public let offlineAdView: OfflineAdBanner
 
     public init(_ interstitialAdName: String) {
         self.interstitialAdID = getAdID(interstitialAdName)
-        self.offlineAdView = OfflineAdBanner(currentAppId: 2) // Provide your desired currentAppId value here
+//        self.offlineAdView = OfflineAdBanner(currentAppId: 2) // Provide your desired currentAppId value here
         super.init()
     }
 
