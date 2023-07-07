@@ -12,12 +12,16 @@ import UIKit
 public final class AdMobInterstitial: NSObject, GADFullScreenContentDelegate {
     public var interstitialAd: GADInterstitialAd?
     public let interstitialAdID: String?
-    public let offlineAdView: OfflineAdBanner
     private var offlineAdController: UIHostingController<OfflineAdBanner>?
+
+    public lazy var offlineAdView: OfflineAdBanner = {
+        OfflineAdBanner(currentAppId: 2, onClose: { [weak self] in
+            self?.dismissOfflineAd()
+        })
+    }()
 
     public init(_ interstitialAdName: String) {
         self.interstitialAdID = getAdID(interstitialAdName)
-        self.offlineAdView = OfflineAdBanner(currentAppId: 2, onClose: {self.dismissOfflineAd()})
         super.init()
     }
 
