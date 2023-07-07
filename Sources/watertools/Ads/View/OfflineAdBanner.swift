@@ -87,6 +87,7 @@ public struct OfflineAdBanner: View {
                     Spacer()
                     
                     Button(action: {
+                        print("DISMISS -2")
                         closeAd()
                     }, label: {
                         HStack(spacing: 10) {
@@ -179,7 +180,7 @@ public struct OfflineAdBanner: View {
         }
     }
     
-    private func closeAd() {
+    func closeAd() {
         print("DISMISS -1")
 //        presentationMode.wrappedValue.dismiss()
         onClose()
