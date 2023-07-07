@@ -178,8 +178,11 @@ public struct OfflineAdBanner: View {
     }
     
     private func closeAd() {
-        presentationMode.wrappedValue.dismiss()
+        if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
+            window.rootViewController?.dismiss(animated: true, completion: nil)
+        }
     }
+
 }
 
 struct OfflineAdBanner_Previews: PreviewProvider {
