@@ -8,50 +8,6 @@
 import SwiftUI
 import GoogleMobileAds
 import UIKit
-    
-//public class Interstitial:NSObject{
-//    var interstitial: GADInterstitialAd?
-//
-//    override init() {
-//        super.init()
-//        LoadInterstitial()
-//    }
-//
-//    func LoadInterstitial(){
-//        let req = GADRequest()
-//        self.interstitial.load()
-//        self.interstitial.delegate = self
-//    }
-//
-//    func showAd(){
-//        if self.interstitial.isReady{
-//           let root = UIApplication.shared.windows.first?.rootViewController
-//           self.interstitial.present(fromRootViewController: root!)
-//        }
-//       else{
-//           print("Not Ready")
-//       }
-//    }
-//
-//    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
-//        self.interstitial = GADInterstitial(adUnitID: watertools.getAdID("Interstitial"))
-//        LoadInterstitial()
-//    }
-//}
-//
-//struct ContentView:View{
-//    var interstitial:Interstitial
-//
-//    init(){
-//        self.interstitial = Interstitial()
-//    }
-//
-//    var body : some View{
-//      Button(action: {self.interstitial.showAd()}){
-//        Text("My Button")
-//      }
-//    }
-//}
 
 public final class AdMobInterstitial: NSObject, GADFullScreenContentDelegate {
     public var interstitialAd: GADInterstitialAd?
@@ -62,43 +18,44 @@ public final class AdMobInterstitial: NSObject, GADFullScreenContentDelegate {
         super.init()
     }
 
-    public func LoadInterstitial() {
+    public func loadInterstitial(completion: @escaping (Result<Void, Error>) -> Void) {
         guard let adUnitID = interstitialAdID else {
-            print("Reward ad ID is nil")
+            completion(.failure(NSError(domain: "AdMobInterstitial", code: 0, userInfo: [NSLocalizedDescriptionKey: "Interstitial ad ID is nil"])))
             return
         }
 
         let request = GADRequest()
 
-        GADInterstitialAd.load(withAdUnitID: adUnitID, request: request) { (ad, error) in
+        GADInterstitialAd.load(withAdUnitID: adUnitID, request: request) { [weak self] (ad, error) in
             if let error = error {
-                print("Interstitial ad failed to load with error: \(error.localizedDescription)")
+                completion(.failure(error))
                 return
             }
 
-            self.interstitialAd = ad
-            self.interstitialAd?.fullScreenContentDelegate = self
+            self?.interstitialAd = ad
+            self?.interstitialAd?.fullScreenContentDelegate = self
+            completion(.success(()))
         }
     }
 
-    public func showInterstitialAd(){
-        LoadInterstitial()
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-              let window = windowScene.windows.first else {
-            return
-        }
-
-        let root = window.rootViewController
-        if let ad = interstitialAd {
-            ad.present(fromRootViewController: root!)
-        } else {
-            print("Ad wasn't ready")
+    public func showInterstitialAd() {
+        loadInterstitial { [weak self] result in
+            switch result {
+            case .success:
+                guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                      let window = windowScene.windows.first,
+                      let root = window.rootViewController else {
+                    return
+                }
+                if let ad = self?.interstitialAd {
+                    ad.present(fromRootViewController: root)
+                } else {
+                    print("Ad wasn't ready")
+                }
+            case .failure(let error):
+                print("Interstitial ad failed to load with error: \(error.localizedDescription)")
+            }
         }
     }
-
-//    public func rewardedAd(_ rewardedAd: GADRewardedAd, userDidEarn reward: GADAdReward) {
-//        if let rf = rewardFunction {
-//            rf()
-//        }
-//    }
 }
+
