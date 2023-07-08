@@ -38,39 +38,26 @@ public final class AdMobInterstitial: NSObject, GADFullScreenContentDelegate {
         }
     }
 
-    public func showInterstitialAd() {
+    public func showInterstitialAd(completion: @escaping (Bool) -> Void) {
         loadInterstitial { [weak self] result in
             switch result {
             case .success:
                 guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                       let window = windowScene.windows.first,
                       let root = window.rootViewController else {
+                    completion(false)
                     return
                 }
                 if let ad = self?.interstitialAd {
                     ad.present(fromRootViewController: root)
+                    completion(true)
                 } else {
-//                    self?.showOfflineAd()
+                    completion(false)
                 }
             case .failure(let error):
                 print("Interstitial ad failed to load with error: \(error.localizedDescription)")
-//                self?.showOfflineAd()
+                completion(false)
             }
         }
     }
-
-//    private func showOfflineAd() {
-//        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-//              let window = windowScene.windows.first else {
-//            return
-//        }
-//        
-//        let hostingController = UIHostingController(rootView: offlineAdView)
-//        hostingController.view.frame = window.bounds
-//        window.addSubview(hostingController.view)
-//        window.rootViewController?.addChild(hostingController)
-//        hostingController.didMove(toParent: window.rootViewController)
-//    }
 }
-
-

@@ -49,7 +49,6 @@ public final class AdMobReward: NSObject, GADFullScreenContentDelegate {
                     return
                 }
                 if let ad = self?.rewardedAd {
-//                    ad.present(fromRootViewController: root)
                     ad.present(fromRootViewController: root,
                                userDidEarnRewardHandler: {
                                     let reward = ad.adReward
