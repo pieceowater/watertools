@@ -14,10 +14,10 @@ public struct ScheduleCard<Destination:View>: View {
     var weekdays: [Bool]?
     var weekdayNames: [String] = {
         let calendar = Calendar.current
-//        let dateFormatter = DateFormatter()
-//        let weekdays = calendar.weekdaySymbols
-//        return Array(weekdays.dropFirst() + weekdays.prefix(1).prefix(7))
-        return calendar.shortWeekdaySymbols
+        let firstWeekdayIndex = calendar.firstWeekday
+        let shiftedSymbols = calendar.shortWeekdaySymbols.suffix(from: firstWeekdayIndex - 1)
+        let weekdaySymbols = shiftedSymbols + calendar.shortWeekdaySymbols.prefix(upTo: firstWeekdayIndex - 1)
+        return Array(weekdaySymbols)
     }()
     var weekdayAction: ((_ index: Int) -> Void)?
     let weekdayContextMenuTitle: String?
