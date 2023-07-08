@@ -47,7 +47,7 @@ public struct OfflineAdBanner: View {
                         .foregroundColor(.accentColor)
                         .frame(width: 60, height: 60)
                         .background(.ultraThinMaterial)
-                        .cornerRadius(15)
+                        .cornerRadius(10)
                     VStack(alignment: .leading) {
                         Text(ad.name[locale] ?? "")
                             .font(.title)
@@ -69,7 +69,7 @@ public struct OfflineAdBanner: View {
                             .foregroundColor(.white)
                             .padding(10)
                             .background(Color.accentColor)
-                            .cornerRadius(15)
+                            .cornerRadius(10)
                     })
                 }
                 .padding()
@@ -101,7 +101,7 @@ public struct OfflineAdBanner: View {
                         .foregroundColor(.primary)
                         .padding(10)
                         .background(.ultraThinMaterial)
-                        .cornerRadius(15)
+                        .cornerRadius(10)
                         .font(.caption)
                     })
                     .disabled(!closeAllowed)
@@ -139,7 +139,7 @@ public struct OfflineAdBanner: View {
                     .foregroundColor(.white)
                     .padding(10)
                     .background(Color.accentColor)
-                    .cornerRadius(15)
+                    .cornerRadius(10)
                     .padding()
                 }
                 
