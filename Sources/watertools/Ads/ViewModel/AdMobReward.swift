@@ -39,7 +39,7 @@ public final class AdMobReward: NSObject, GADFullScreenContentDelegate {
         }
     }
 
-    public func showRewardedAd(rewardFunction: @escaping (_ reward: GADAdReward) -> Void){
+    public func showRewardedAd(rewardFunction: @escaping (_ reward: GADAdReward) -> Void, completion: @escaping (Bool) -> Void){
         LoadRewarded { [weak self] result in
             switch result {
             case .success:
