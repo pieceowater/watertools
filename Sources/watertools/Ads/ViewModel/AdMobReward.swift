@@ -46,6 +46,7 @@ public final class AdMobReward: NSObject, GADFullScreenContentDelegate {
                 guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                       let window = windowScene.windows.first,
                       let root = window.rootViewController else {
+                    completion(false)
                     return
                 }
                 if let ad = self?.rewardedAd {
@@ -55,12 +56,13 @@ public final class AdMobReward: NSObject, GADFullScreenContentDelegate {
                                     rewardFunction(reward)
                                 }
                                )
+                    completion(true)
                 } else {
-//                    self?.showOfflineAd()
+                    completion(false)
                 }
             case .failure(let error):
                 print("Rewarded ad failed to load with error: \(error.localizedDescription)")
-//                self?.showOfflineAd()
+                completion(false)
             }
         }
     }

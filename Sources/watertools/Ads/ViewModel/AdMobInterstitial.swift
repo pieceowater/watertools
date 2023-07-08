@@ -60,4 +60,5 @@ public final class AdMobInterstitial: NSObject, GADFullScreenContentDelegate {
             }
         }
     }
+
 }
