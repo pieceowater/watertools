@@ -31,17 +31,21 @@ public struct WeekdayPicker: View {
                 Button(action: {
                     action(index)
                 }) {
-                    Text(weekdayNames[index].prefix(3))
-                        .font(.subheadline)
-                        .minimumScaleFactor(0.6)
-                        .lineLimit(1)
-                        .foregroundColor(weekdays[index] ? .accentColor : .gray)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 5)
-                        .background(
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(weekdays[index] ? Color.accentColor.opacity(0.15) : Color.gray.opacity(0.15))
-                        )
+                    HStack{
+                        Spacer()
+                        Text(weekdayNames[index].prefix(3))
+                            .font(.subheadline)
+                            .minimumScaleFactor(0.6)
+                            .lineLimit(1)
+                            .foregroundColor(weekdays[index] ? .accentColor : .gray)
+                        Spacer()
+                    }
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 5)
+                    .background(
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(weekdays[index] ? Color.accentColor.opacity(0.15) : Color.gray.opacity(0.15))
+                    )
                 }
             }
         }
