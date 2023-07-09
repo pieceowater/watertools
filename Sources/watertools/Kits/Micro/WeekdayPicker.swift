@@ -17,8 +17,10 @@ public struct WeekdayPicker: View {
         self.weekdays = weekdays
         self.weekdayNames = {
             let calendar = Calendar.current
-            let weekdays = calendar.weekdaySymbols
-            return Array(weekdays.dropFirst() + weekdays.prefix(1).prefix(7))
+            let firstWeekdayIndex = calendar.firstWeekday
+            let shiftedSymbols = calendar.shortWeekdaySymbols.suffix(from: firstWeekdayIndex - 1)
+            let weekdaySymbols = shiftedSymbols + calendar.shortWeekdaySymbols.prefix(upTo: firstWeekdayIndex - 1)
+            return Array(weekdaySymbols)
         }()
         self.action = action
     }
