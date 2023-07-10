@@ -167,7 +167,12 @@ public enum Colors: String, CaseIterable {
         case .skyBlue:
             return Color(hex: "87CEEB")
         default:
-            return Color(hex: "61C554")
+//            return Color(hex: "61C554")
+            if let accentColor = Color("AccentColor") {
+                return accentColor
+            } else {
+                return Color(hex: "61C554")
+            }
         }
     }
 }
