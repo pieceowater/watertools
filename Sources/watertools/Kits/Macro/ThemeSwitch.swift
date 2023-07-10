@@ -48,8 +48,5 @@ public struct ThemeSwitch: View {
             Text(darkModeText)
                 .foregroundColor(.primary)
         }
-        .onAppear{
-//            theme = systemPreferencesManager.theme
-        }
     }
 }
