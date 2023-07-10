@@ -12,7 +12,7 @@ public class SystemPreferencesManager: ObservableObject {
     public static let shared = SystemPreferencesManager()
     
     @Published public var accentColor: Colors = .default
-    @Published public var theme: watertools.ThemeSwitch.Theme = .light
+    @Published public var theme: watertools.ThemeSwitch.Theme = .dark
     @Published public var selectedLanguage: watertools.LanguagePicker.Language?
     
     private init() {
