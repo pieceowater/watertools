@@ -93,8 +93,8 @@ public struct TextFieldAlert: ViewModifier {
                                             isPresented = false
                                             submitAction()
                                         }
-                                    }.fontWeight(.bold)
-                                        .disabled(text.isEmpty)
+                                    }.font(.headline)
+                                    .disabled(text.isEmpty)
                                 }
                             }
                             .padding()
