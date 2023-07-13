@@ -65,7 +65,7 @@ public struct UpgradeApp: View {
         
         let btnTextPrefix: String
         let purchaseAction: (Product) -> Bool
-        public init(offer: Offer, btnTextPrefix: String, purchaseAction: @escaping (Product) -> Bool) {
+        public init(offer: Product, btnTextPrefix: String, purchaseAction: @escaping (Product) -> Bool) {
             self.offer = offer
             self.btnTextPrefix = btnTextPrefix
             self.purchaseAction = purchaseAction
