@@ -30,13 +30,15 @@ public struct UpgradeApp: View {
     
     let navigationTitle: String
     let navResetBtn: String
+    let resetAction: () -> Void
     let btnTextPrefix: String
-    let purchaseAction: () -> Bool
+    let purchaseAction: (product) -> Bool
     
-    public init(products: [Product], navigationTitle: String = "Upgrade to Pro", navResetBtn: String = "Restore", btnTextPrefix: String = "Get for", purchaseAction: () -> Bool) {
+    public init(products: [Product], navigationTitle: String = "Upgrade to Pro", navResetBtn: String = "Restore", resetAction: @escaping () -> Void, btnTextPrefix: String = "Get for", purchaseAction: (product) -> Bool) {
         self.products = products
         self.navigationTitle = navigationTitle
         self.navResetBtn = navResetBtn
+        self.resetAction = resetAction
         self.btnTextPrefix = btnTextPrefix
         self.purchaseAction = purchaseAction
     }
@@ -51,6 +53,7 @@ public struct UpgradeApp: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing, content: {
                 NavToolbarBtnItem(title: navResetBtn, icon: "arrow.uturn.left.circle") {
+                    resetAction()
                 }
             })
         }
@@ -61,8 +64,8 @@ public struct UpgradeApp: View {
         public var offer: Product
         
         let btnTextPrefix: String
-        let purchaseAction: () -> Bool
-        public init(offer: Offer, btnTextPrefix: String, purchaseAction: @escaping () -> Bool) {
+        let purchaseAction: (product) -> Bool
+        public init(offer: Offer, btnTextPrefix: String, purchaseAction: @escaping (product) -> Bool) {
             self.offer = offer
             self.btnTextPrefix = btnTextPrefix
             self.purchaseAction = purchaseAction
@@ -95,7 +98,7 @@ public struct UpgradeApp: View {
                     .padding(.bottom)
                 
                 Button {
-                    purchaseAction()
+                    purchaseAction(offer)
                 } label: {
                     HStack{
                         Spacer()
