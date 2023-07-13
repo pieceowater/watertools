@@ -32,7 +32,7 @@ public class StoreKitManager: NSObject, ObservableObject {
     @Published
     private(set) var purchasedProductIDs = Set<String>()
 
-    var hasUnlockedPro: Bool {
+    public var hasUnlockedPro: Bool {
        return !self.purchasedProductIDs.isEmpty
     }
     
@@ -40,14 +40,14 @@ public class StoreKitManager: NSObject, ObservableObject {
     
     private let entitlementManager: EntitlementManager
 
-    init(entitlementManager: EntitlementManager) {
+    public init(entitlementManager: EntitlementManager) {
         self.entitlementManager = entitlementManager
         super.init()
         SKPaymentQueue.default().add(self)
     }
 
 
-    deinit {
+    public deinit {
         updates?.cancel()
     }
     
@@ -60,13 +60,13 @@ public class StoreKitManager: NSObject, ObservableObject {
         }
     }
     
-    func loadProducts() async throws {
+    public func loadProducts() async throws {
         guard !self.productsLoaded else { return }
         self.products = try await Product.products(for: productIds)
         self.productsLoaded = true
     }
 
-    func purchase(_ product: Product) async throws -> Bool {
+    public func purchase(_ product: Product) async throws -> Bool {
         let result = try await product.purchase()
 
         switch result {
@@ -86,7 +86,7 @@ public class StoreKitManager: NSObject, ObservableObject {
         }
     }
     
-    func restorePurchase() async {
+    public func restorePurchase() async {
         do {
             try await AppStore.sync()
         } catch {
@@ -94,7 +94,7 @@ public class StoreKitManager: NSObject, ObservableObject {
         }
     }
     
-    func updatePurchasedProducts() async {
+    public func updatePurchasedProducts() async {
         for await result in StoreKit.Transaction.currentEntitlements {
             guard case .verified(let transaction) = result else {
                 continue
@@ -126,7 +126,7 @@ public class EntitlementManager: ObservableObject {
     static let userDefaults = UserDefaults(suiteName: Bundle.main.bundleIdentifier)
 
     @AppStorage("hasPro", store: userDefaults)
-    var hasPro: Bool = false
+    public var hasPro: Bool = false
     
     init(hasPro: Bool) {
         self.hasPro = hasPro
