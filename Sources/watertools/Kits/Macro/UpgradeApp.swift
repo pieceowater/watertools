@@ -45,7 +45,7 @@ public struct UpgradeApp: View {
     
     public var body: some View {
         ScrollView {
-            ForEach(products, id: \.productID){ product in
+            ForEach(products){ product in
                 OfferCard(offer: product, btnTextPrefix: btnTextPrefix, purchaseAction: purchaseAction)
             }
         }
