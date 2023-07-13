@@ -32,9 +32,9 @@ public struct UpgradeApp: View {
     let navResetBtn: String
     let resetAction: () -> Void
     let btnTextPrefix: String
-    let purchaseAction: (Product) -> Bool
+    let purchaseAction: (Product) -> Void
     
-    public init(products: [Product], navigationTitle: String = "Upgrade to Pro", navResetBtn: String = "Restore", resetAction: @escaping () -> Void, btnTextPrefix: String = "Get for", purchaseAction: @escaping (Product) -> Bool) {
+    public init(products: [Product], navigationTitle: String = "Upgrade to Pro", navResetBtn: String = "Restore", resetAction: @escaping () -> Void, btnTextPrefix: String = "Get for", purchaseAction: @escaping (Product) -> Void) {
         self.products = products
         self.navigationTitle = navigationTitle
         self.navResetBtn = navResetBtn
@@ -79,7 +79,7 @@ public struct UpgradeApp: View {
         
         let btnTextPrefix: String
         let purchaseAction: (Product) -> Bool
-        public init(offer: Product, btnTextPrefix: String, purchaseAction: @escaping (Product) -> Bool) {
+        public init(offer: Product, btnTextPrefix: String, purchaseAction: @escaping (Product) -> Void) {
             self.offer = offer
             self.btnTextPrefix = btnTextPrefix
             self.purchaseAction = purchaseAction
