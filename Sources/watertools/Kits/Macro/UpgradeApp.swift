@@ -12,7 +12,7 @@ public struct UpgradeApp: View {
     public var products: [Product]
     
     let eulaUrl: URL
-    let privacyUrl: String
+    let privacyUrl: URL
     let navRestoreBtn: String
     let restoreAction: () -> Void
     let btnTextPrefix: String
