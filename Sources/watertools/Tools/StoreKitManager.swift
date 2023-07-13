@@ -47,7 +47,7 @@ public class StoreKitManager: NSObject, ObservableObject {
     }
 
 
-    public deinit {
+    deinit {
         updates?.cancel()
     }
     
@@ -113,11 +113,11 @@ public class StoreKitManager: NSObject, ObservableObject {
 }
 
 extension StoreKitManager: SKPaymentTransactionObserver {
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+    public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
 
     }
 
-    func paymentQueue(_ queue: SKPaymentQueue, shouldAddStorePayment payment: SKPayment, for product: SKProduct) -> Bool {
+    public func paymentQueue(_ queue: SKPaymentQueue, shouldAddStorePayment payment: SKPayment, for product: SKProduct) -> Bool {
         return true
     }
 }
