@@ -112,7 +112,7 @@ public class StoreKitManager: NSObject, ObservableObject {
     
 }
 
-public extension StoreKitManager: SKPaymentTransactionObserver {
+extension StoreKitManager: SKPaymentTransactionObserver {
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
 
     }
