@@ -9,34 +9,15 @@ import SwiftUI
 import StoreKit
 
 public struct UpgradeApp: View {
-//    public struct Offer {
-//        let productID: String
-//        let productName: String
-//        let productPrice: String
-//        let productDescription: String
-//        let productIcon: Image?
-//
-//
-//        public init(productID: String, productName: String, productPrice: String, productDescription: String, productIcon: Image? = nil) {
-//            self.productID = productID
-//            self.productName = productName
-//            self.productPrice = productPrice
-//            self.productDescription = productDescription
-//            self.productIcon = productIcon
-//        }
-//    }
-    
     public var products: [Product]
     
-    let navigationTitle: String
     let navResetBtn: String
     let resetAction: () -> Void
     let btnTextPrefix: String
     let purchaseAction: (Product) -> Void
     
-    public init(products: [Product], navigationTitle: String = "Upgrade to Pro", navResetBtn: String = "Restore", resetAction: @escaping () -> Void, btnTextPrefix: String = "Get for", purchaseAction: @escaping (Product) -> Void) {
+    public init(products: [Product], navResetBtn: String = "Restore", resetAction: @escaping () -> Void, btnTextPrefix: String = "Get for", purchaseAction: @escaping (Product) -> Void) {
         self.products = products
-        self.navigationTitle = navigationTitle
         self.navResetBtn = navResetBtn
         self.resetAction = resetAction
         self.btnTextPrefix = btnTextPrefix
@@ -49,7 +30,6 @@ public struct UpgradeApp: View {
                 OfferCard(offer: product, btnTextPrefix: btnTextPrefix, purchaseAction: purchaseAction)
             }
         }
-        .navigationTitle(navigationTitle)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing, content: {
                 NavToolbarBtnItem(title: navResetBtn, icon: "arrow.uturn.left.circle") {
