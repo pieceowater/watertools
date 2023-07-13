@@ -11,29 +11,36 @@ import StoreKit
 public struct UpgradeApp: View {
     public var products: [Product]
     
-    let navResetBtn: String
-    let resetAction: () -> Void
+    let eulaUrl: URL
+    let privacyUrl: String
+    let navRestoreBtn: String
+    let restoreAction: () -> Void
     let btnTextPrefix: String
     let purchaseAction: (Product) -> Void
     
-    public init(products: [Product], navResetBtn: String = "Restore", resetAction: @escaping () -> Void, btnTextPrefix: String = "Get for", purchaseAction: @escaping (Product) -> Void) {
+    public init(products: [Product], navRestoreBtn: String = "Restore", restoreAction: @escaping () -> Void, btnTextPrefix: String = "Get for", purchaseAction: @escaping (Product) -> Void) {
         self.products = products
-        self.navResetBtn = navResetBtn
-        self.resetAction = resetAction
+        self.navRestoreBtn = navRestoreBtn
+        self.restoreAction = restoreAction
         self.btnTextPrefix = btnTextPrefix
         self.purchaseAction = purchaseAction
     }
     
     public var body: some View {
         ScrollView {
-            ForEach(products){ product in
-                OfferCard(offer: product, btnTextPrefix: btnTextPrefix, purchaseAction: purchaseAction)
-            }
+            VStack (spacing: 10) {
+                ForEach(products){ product in
+                    OfferCard(offer: product, btnTextPrefix: btnTextPrefix, purchaseAction: purchaseAction)
+                }
+                
+                watertools.ExternalLinkBtn(title: "Terms of Use (EULA)", url: eulaUrl)
+                watertools.ExternalLinkBtn(title: "Privacy policy", url: privacyUrl)
+            }.padding()
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing, content: {
-                NavToolbarBtnItem(title: navResetBtn, icon: "arrow.uturn.left.circle") {
-                    resetAction()
+                NavToolbarBtnItem(title: navRestoreBtn, icon: "arrow.uturn.left.circle") {
+                    restoreAction()
                 }
             })
         }
@@ -108,7 +115,6 @@ public struct UpgradeApp: View {
             .padding()
             .background(.ultraThinMaterial)
             .cornerRadius(10)
-            .padding()
         }
     }
 }
