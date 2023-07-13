@@ -61,6 +61,20 @@ public struct UpgradeApp: View {
     }
     
     public struct OfferCard: View {
+        struct AppIconView: UIViewRepresentable {
+            let appIcon: UIImage
+            
+            func makeUIView(context: Context) -> UIImageView {
+                let imageView = UIImageView(image: appIcon)
+                imageView.contentMode = .scaleAspectFit
+                return imageView
+            }
+            
+            func updateUIView(_ uiView: UIImageView, context: Context) {
+                uiView.image = appIcon
+            }
+        }
+        
         public var offer: Product
         
         let btnTextPrefix: String
@@ -77,17 +91,13 @@ public struct UpgradeApp: View {
                 if let iconsDictionary = Bundle.main.infoDictionary?["CFBundleIcons"] as? [String: Any],
                    let primaryIconDictionary = iconsDictionary["CFBundlePrimaryIcon"] as? [String: Any],
                    let iconFiles = primaryIconDictionary["CFBundleIconFiles"] as? [String],
-                   let lastIconFile = iconFiles.last {
-                    if let appIcon = UIImage(named: lastIconFile) {
-                        appIcon
-//                            .resizable()
-//                            .frame(width: 100, height: 100)
-//                            .cornerRadius(10)
-                    } else {
-                        print("Failed to retrieve app icon")
-                    }
+                   let lastIconFile = iconFiles.last,
+                   let appIcon = UIImage(named: lastIconFile) {
+                    AppIconView(appIcon: appIcon)
+                        .frame(width: 100, height: 100)
+                        .cornerRadius(10)
                 } else {
-                    print("Failed to retrieve app icon information")
+                    Text("Failed to retrieve app icon")
                 }
 
                 Text(offer.displayName)
@@ -122,3 +132,4 @@ public struct UpgradeApp: View {
         }
     }
 }
+
