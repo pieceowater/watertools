@@ -85,6 +85,7 @@ public struct UpgradeApp: View {
                     AppIconView(appIcon: appIcon)
                         .frame(width: 100, height: 100)
                         .cornerRadius(10)
+                        .padding(.top)
                 } else {
                     Text("Failed to retrieve app icon")
                 }
