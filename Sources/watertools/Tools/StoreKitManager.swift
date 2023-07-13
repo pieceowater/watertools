@@ -129,7 +129,7 @@ public class EntitlementManager: ObservableObject {
     @AppStorage("hasPro", store: userDefaults)
     public var hasPro: Bool = false
     
-    public init(hasPro: Bool) {
+    public init() {
         self.hasPro = hasPro
     }
 }
