@@ -26,7 +26,7 @@ public class StoreKitManager: NSObject, ObservableObject {
     }
 
     @Published
-    private(set) var products: [Product] = []
+    public(set) var products: [Product] = []
     private var productsLoaded = false
     
     @Published
