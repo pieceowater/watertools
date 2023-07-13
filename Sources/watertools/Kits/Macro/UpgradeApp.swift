@@ -81,8 +81,8 @@ public struct UpgradeApp: View {
                     if let appIcon = UIImage(named: lastIconFile) {
                         appIcon
 //                            .resizable()
-                            .frame(width: 100, height: 100)
-                            .cornerRadius(10)
+//                            .frame(width: 100, height: 100)
+//                            .cornerRadius(10)
                     } else {
                         print("Failed to retrieve app icon")
                     }
