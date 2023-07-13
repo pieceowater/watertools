@@ -6,42 +6,45 @@
 //
 
 import SwiftUI
+import StoreKit
 
 public struct UpgradeApp: View {
-    public struct Offer {
-        let productID: String
-        let productName: String
-        let productPrice: String
-        let productDescription: String
-        let productIcon: Image
-        
-        
-        public init(productID: String, productName: String, productPrice: String, productDescription: String, productIcon: Image) {
-            self.productID = productID
-            self.productName = productName
-            self.productPrice = productPrice
-            self.productDescription = productDescription
-            self.productIcon = productIcon
-        }
-    }
+//    public struct Offer {
+//        let productID: String
+//        let productName: String
+//        let productPrice: String
+//        let productDescription: String
+//        let productIcon: Image?
+//
+//
+//        public init(productID: String, productName: String, productPrice: String, productDescription: String, productIcon: Image? = nil) {
+//            self.productID = productID
+//            self.productName = productName
+//            self.productPrice = productPrice
+//            self.productDescription = productDescription
+//            self.productIcon = productIcon
+//        }
+//    }
     
-    public var products: [Offer]
+    public var products: [Product]
     
     let navigationTitle: String
     let navResetBtn: String
     let btnTextPrefix: String
+    let purchaseAction: () -> Bool
     
-    public init(products: [Offer], navigationTitle: String = "Upgrade to Pro", navResetBtn: String = "Restore", btnTextPrefix: String = "Get for") {
+    public init(products: [Product], navigationTitle: String = "Upgrade to Pro", navResetBtn: String = "Restore", btnTextPrefix: String = "Get for", purchaseAction: () -> Bool) {
         self.products = products
         self.navigationTitle = navigationTitle
         self.navResetBtn = navResetBtn
         self.btnTextPrefix = btnTextPrefix
+        self.purchaseAction = purchaseAction
     }
     
     public var body: some View {
         ScrollView {
             ForEach(products, id: \.productID){ product in
-                OfferCard(offer: product, btnTextPrefix: btnTextPrefix)
+                OfferCard(offer: product, btnTextPrefix: btnTextPrefix, purchaseAction: purchaseAction)
             }
         }
         .navigationTitle(navigationTitle)
@@ -55,34 +58,48 @@ public struct UpgradeApp: View {
     }
     
     public struct OfferCard: View {
-        public var offer: Offer
+        public var offer: Product
         
         let btnTextPrefix: String
-        public init(offer: Offer, btnTextPrefix: String) {
+        let purchaseAction: () -> Bool
+        public init(offer: Offer, btnTextPrefix: String, purchaseAction: @escaping () -> Bool) {
             self.offer = offer
             self.btnTextPrefix = btnTextPrefix
+            self.purchaseAction = purchaseAction
         }
-        
+                
         public var body: some View {
             VStack{
-                offer.productIcon
-                    .resizable()
-                    .frame(width: 100, height: 100)
                 
-                Text(offer.productName)
+                if let iconsDictionary = Bundle.main.infoDictionary?["CFBundleIcons"] as? [String: Any],
+                   let primaryIconDictionary = iconsDictionary["CFBundlePrimaryIcon"] as? [String: Any],
+                   let iconFiles = primaryIconDictionary["CFBundleIconFiles"] as? [String],
+                   let lastIconFile = iconFiles.last {
+                    if let appIcon = UIImage(named: lastIconFile) {
+                        appIcon
+                            .resizable()
+                            .frame(width: 100, height: 100)
+                    } else {
+                        print("Failed to retrieve app icon")
+                    }
+                } else {
+                    print("Failed to retrieve app icon information")
+                }
+
+                Text(offer.displayName)
                     .font(.title)
                     .fontWeight(.bold)
-                Text(offer.productDescription)
+                Text(offer.description)
                     .font(.subheadline)
                     .multilineTextAlignment(.center)
                     .padding(.bottom)
                 
                 Button {
-                    // buy here
+                    purchaseAction()
                 } label: {
                     HStack{
                         Spacer()
-                        Text("\(btnTextPrefix) \(offer.productPrice)")
+                        Text("\(btnTextPrefix) \(offer.displayPrice)")
                             .font(.headline)
                             .foregroundColor(.white)
                         Spacer()
