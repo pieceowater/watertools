@@ -20,6 +20,8 @@ public struct UpgradeApp: View {
     
     public init(products: [Product], eulaUrl: URL, privacyUrl: URL,  navRestoreBtn: String = "Restore", restoreAction: @escaping () -> Void, btnTextPrefix: String = "Get for", purchaseAction: @escaping (Product) -> Void) {
         self.products = products
+        self.eulaUrl = eulaUrl
+        self.privacyUrl = privacyUrl
         self.navRestoreBtn = navRestoreBtn
         self.restoreAction = restoreAction
         self.btnTextPrefix = btnTextPrefix
