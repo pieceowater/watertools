@@ -34,7 +34,7 @@ public struct UpgradeApp: View {
     let btnTextPrefix: String
     let purchaseAction: (Product) -> Bool
     
-    public init(products: [Product], navigationTitle: String = "Upgrade to Pro", navResetBtn: String = "Restore", resetAction: @escaping () -> Void, btnTextPrefix: String = "Get for", purchaseAction: (Product) -> Bool) {
+    public init(products: [Product], navigationTitle: String = "Upgrade to Pro", navResetBtn: String = "Restore", resetAction: @escaping () -> Void, btnTextPrefix: String = "Get for", purchaseAction: @escaping (Product) -> Bool) {
         self.products = products
         self.navigationTitle = navigationTitle
         self.navResetBtn = navResetBtn
@@ -80,8 +80,9 @@ public struct UpgradeApp: View {
                    let lastIconFile = iconFiles.last {
                     if let appIcon = UIImage(named: lastIconFile) {
                         appIcon
-                            .resizable()
+//                            .resizable()
                             .frame(width: 100, height: 100)
+                            .cornerRadius(10)
                     } else {
                         print("Failed to retrieve app icon")
                     }
