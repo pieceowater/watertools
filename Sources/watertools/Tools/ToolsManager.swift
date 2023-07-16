@@ -131,17 +131,32 @@ public func formatURLString(_ urlString: String) -> String? {
 //    return formatter.string(from: number)
 //}
 
-public func formatNumberWithThousandsSeparator(_ numberString: String) -> String? {
+//public func formatNumberWithThousandsSeparator(_ numberString: String) -> String? {
+//    let formatter = NumberFormatter()
+//    formatter.numberStyle = .decimal
+//    formatter.groupingSeparator = " "
+//    formatter.decimalSeparator = ","
+//
+//    let cleanedNumberString = numberString.replacingOccurrences(of: ".", with: "")
+//
+//    guard let number = formatter.number(from: cleanedNumberString) else {
+//        return nil
+//    }
+//
+//    return formatter.string(from: number)
+//}
+
+public func formatNumberWithThousandsSeparator(_ numberString: String) -> String {
     let formatter = NumberFormatter()
     formatter.numberStyle = .decimal
     formatter.groupingSeparator = " "
-    formatter.decimalSeparator = ","
     
-    let cleanedNumberString = numberString.replacingOccurrences(of: ".", with: "")
+    // Remove any existing grouping separators from the numberString
+    let sanitizedString = numberString.replacingOccurrences(of: formatter.groupingSeparator, with: "")
     
-    guard let number = formatter.number(from: cleanedNumberString) else {
-        return nil
+    guard let number = formatter.number(from: sanitizedString) else {
+        return numberString
     }
     
-    return formatter.string(from: number)
+    return formatter.string(from: number) ?? numberString
 }
