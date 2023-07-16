@@ -119,12 +119,27 @@ public func formatURLString(_ urlString: String) -> String? {
     return nil
 }
 
+//public func formatNumberWithThousandsSeparator(_ numberString: String) -> String? {
+//    let formatter = NumberFormatter()
+//    formatter.numberStyle = .decimal
+//    formatter.groupingSeparator = " "
+//
+//    guard let number = formatter.number(from: numberString) else {
+//        return nil
+//    }
+//
+//    return formatter.string(from: number)
+//}
+
 public func formatNumberWithThousandsSeparator(_ numberString: String) -> String? {
     let formatter = NumberFormatter()
     formatter.numberStyle = .decimal
     formatter.groupingSeparator = " "
+    formatter.decimalSeparator = ","
     
-    guard let number = formatter.number(from: numberString) else {
+    let cleanedNumberString = numberString.replacingOccurrences(of: ".", with: "")
+    
+    guard let number = formatter.number(from: cleanedNumberString) else {
         return nil
     }
     
