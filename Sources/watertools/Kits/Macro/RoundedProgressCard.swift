@@ -82,7 +82,7 @@ public struct RoundedProgressCard: View {
                     if let progressAction = progressAction {
                         Image(systemName: "plus")
                             .font(.title)
-                            .fontWeight(.bold)
+//                            .fontWeight(.bold)
                             .foregroundColor(.accentColor)
                             .onTapGesture {
                                 withAnimation {
