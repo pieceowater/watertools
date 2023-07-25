@@ -132,7 +132,7 @@ public func formatNumberWithThousandsSeparator(_ numberString: String) -> String
 }
 
 public func calculator(_ inputText: String, roundedSymbolCount: Int? = nil) -> String {
-    let inputWithoutSpaces = inputText.replacingOccurrences(of: " ", with: "")
+    let inputWithoutSpaces = inputText.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "×", with: "*").replacingOccurrences(of: "÷", with: "/")
     do {
         let pattern = #"[0-9]+([,.][0-9]+)?|[+\-*/]"#
         let regex = try NSRegularExpression(pattern: pattern, options: .anchorsMatchLines)
@@ -160,14 +160,13 @@ public func calculator(_ inputText: String, roundedSymbolCount: Int? = nil) -> S
         }
 
         var result = String(evaluateExpression(cleanedStrings))
-        print("Результат вычислений: \(result)")
         
         if let roundedSymbolCount = roundedSymbolCount {
             result = String(format: "%.\(roundedSymbolCount)f", Double(result) ?? 0)
         }
         return result
     } catch {
-        print("Ошибка при создании регулярного выражения: \(error)")
+        print("Regex err: \(error)")
         return "0"
     }
 
