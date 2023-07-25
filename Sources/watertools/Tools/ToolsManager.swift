@@ -130,3 +130,99 @@ public func formatNumberWithThousandsSeparator(_ numberString: String) -> String
 
     return formatter.string(from: number)
 }
+
+public func calculator(_ inputText: String, roundedSymbolCount: Int? = nil) -> String {
+    let inputWithoutSpaces = inputText.replacingOccurrences(of: " ", with: "")
+    do {
+        let pattern = #"[0-9]+([,.][0-9]+)?|[+\-*/]"#
+        let regex = try NSRegularExpression(pattern: pattern, options: .anchorsMatchLines)
+
+        let range = NSRange(location: 0, length: inputWithoutSpaces.utf16.count)
+        let matches = regex.matches(in: inputWithoutSpaces, options: [], range: range)
+
+        let matchedStrings = matches.map { match -> String in
+            let matchRange = match.range
+            return (inputWithoutSpaces as NSString).substring(with: matchRange)
+        }
+
+        var cleanedStrings: [String] = []
+        var lastOperator: Character?
+        for element in matchedStrings {
+            if let operatorSymbol = element.first {
+                if operatorSymbol != lastOperator {
+                    cleanedStrings.append(element)
+                }
+                lastOperator = operatorSymbol
+            } else {
+                cleanedStrings.append(element)
+                lastOperator = nil
+            }
+        }
+
+        var result = String(evaluateExpression(cleanedStrings))
+        print("Результат вычислений: \(result)")
+        
+        if let roundedSymbolCount = roundedSymbolCount {
+            result = String(format: "%.\(roundedSymbolCount)f", Double(result) ?? 0)
+        }
+        return result
+    } catch {
+        print("Ошибка при создании регулярного выражения: \(error)")
+        return "0"
+    }
+
+    func evaluateExpression(_ expression: [String]) -> Double {
+        var operandStack: [Double] = []
+        var operatorStack: [Character] = []
+
+        let operatorPriority: [Character: Int] = ["+": 1, "-": 1, "*": 2, "/": 2]
+
+        func performOperation(_ operatorSymbol: Character) {
+            if let secondOperand = operandStack.popLast(), let firstOperand = operandStack.popLast() {
+                switch operatorSymbol {
+                case "+":
+                    operandStack.append(firstOperand + secondOperand)
+                case "-":
+                    operandStack.append(firstOperand - secondOperand)
+                case "*":
+                    operandStack.append(firstOperand * secondOperand)
+                case "/":
+                    operandStack.append(firstOperand / secondOperand)
+                default:
+                    break
+                }
+            }
+        }
+
+        for element in expression {
+            if let number = Double(element.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: ".")) {
+                operandStack.append(number)
+            } else if let operatorSymbol = element.first {
+                while let lastOperator = operatorStack.last,
+                      let lastOperatorPriority = operatorPriority[lastOperator],
+                      let currentOperatorPriority = operatorPriority[operatorSymbol],
+                      lastOperatorPriority >= currentOperatorPriority {
+                    performOperation(lastOperator)
+                    operatorStack.removeLast()
+                }
+                operatorStack.append(operatorSymbol)
+            }
+        }
+        while let operatorSymbol = operatorStack.popLast() {
+            performOperation(operatorSymbol)
+        }
+
+        return operandStack.first ?? 0.0
+    }
+
+}
+
+public func beautifySum(_ numberString: String) -> String {
+    let pattern = #"\d(?=(\d{3})+([^\d]|$))"#
+    let regex = try! NSRegularExpression(pattern: pattern)
+
+    let range = NSRange(location: 0, length: numberString.utf16.count)
+    let formattedString = regex.stringByReplacingMatches(in: numberString, options: [], range: range, withTemplate: "$0 ")
+
+    return formattedString
+}
