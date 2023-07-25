@@ -217,8 +217,9 @@ public func calculator(_ inputText: String, roundedSymbolCount: Int? = nil) -> S
 
 }
 
-public func beautifySum(_ numberString: String) -> String {
-    let pattern = #"\d(?=(\d{3})+([^\d]|$))"#
+public func beautifySum(_ number: String) -> String {
+    let numberString = number.replacingOccurrences(of: " ", with: "")
+    let pattern = #"(?<!\s)\d(?=(\d{3})+([^\d]|$))"#
     let regex = try! NSRegularExpression(pattern: pattern)
 
     let range = NSRange(location: 0, length: numberString.utf16.count)
