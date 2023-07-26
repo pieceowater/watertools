@@ -9,9 +9,9 @@ import SwiftUI
 
 public struct PieChart: View {
     public struct PieChartItem {
-        let title: String
-        let value: Double
-        let color: Color
+        public let title: String
+        public let value: Double
+        public let color: Color
         
         public init(title: String, value: Double, color: Color) {
             self.title = title
@@ -20,8 +20,8 @@ public struct PieChart: View {
         }
     }
     
-    @State var slices: [PieChart.PieChartItem]
-    @State var showAll: Bool
+    @State public var slices: [PieChart.PieChartItem]
+    @State public var showAll: Bool
     
     public init(slices: [PieChart.PieChartItem], showAll: Bool = false) {
         self.slices = slices
