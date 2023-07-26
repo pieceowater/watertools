@@ -20,10 +20,10 @@ public struct PieChart: View {
         }
     }
     
-    @State var slices: [PieChart.PieChartItem] = []
-    @State var showAll: Bool = false
+    @State var slices: [PieChart.PieChartItem]
+    @State var showAll: Bool
     
-    public init(slices: [PieChart.PieChartItem] = [], showAll: Bool = false) {
+    public init(slices: [PieChart.PieChartItem], showAll: Bool = false) {
         self.slices = slices
         self.showAll = showAll
     }
