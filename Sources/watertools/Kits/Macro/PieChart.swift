@@ -12,12 +12,18 @@ public struct PieChart: View {
         let title: String
         let value: Double
         let color: Color
+        
+        public init(title: String, value: Double, color: Color) {
+            self.title = title
+            self.value = value
+            self.color = color
+        }
     }
     
     @State var slices: [PieChart.PieChartItem] = []
     @State var showAll: Bool = false
     
-    public init(slices: [PieChart.PieChartItem], showAll: Bool) {
+    public init(slices: [PieChart.PieChartItem] = [], showAll: Bool = false) {
         self.slices = slices
         self.showAll = showAll
     }
