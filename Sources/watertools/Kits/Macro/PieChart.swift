@@ -82,7 +82,7 @@ public struct PieChart: View {
                         }
                     }
                 }
-            }
+            }.padding(.bottom, 5)
 
             if slices.count > 6 {
                 Button {
@@ -96,7 +96,7 @@ public struct PieChart: View {
                         .padding(.vertical, 5)
                         .background(.ultraThinMaterial)
                         .cornerRadius(5)
-                        .padding(.vertical, 5)
+                        .padding(.bottom, 5)
                 }
             }
 
