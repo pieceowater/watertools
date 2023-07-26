@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
 
-struct Checkbox: ToggleStyle {
-    func makeBody(configuration: Configuration) -> some View {
+public struct Checkbox: ToggleStyle {
+    public func makeBody(configuration: Configuration) -> some View {
         Button(action: {
             withAnimation {
                 configuration.isOn.toggle()
@@ -26,7 +27,7 @@ struct Checkbox: ToggleStyle {
  
  Toggle("", isOn: $isChecked)
      .labelsHidden()
-     .toggleStyle(Checkbox())
+     .toggleStyle(watertools.Checkbox())
      .padding(5)
  
  */
