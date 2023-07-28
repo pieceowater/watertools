@@ -72,7 +72,7 @@ public struct PieChart: View {
                     if !(!showAll && index >= 6) {
                         HStack {
                             slice.color.cornerRadius(100).frame(width: 10, height: 10)
-                            var labelState = true
+                            @State var labelState = true
                             Text((labelState ? slice.title : watertools.formatCurrency(slice.value)) ?? "--")
                                 .font(.headline)
                                 .foregroundColor(.primary)
