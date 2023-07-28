@@ -14,12 +14,12 @@ import MobileCoreServices
 public struct ImagePicker: UIViewControllerRepresentable {
     @Binding public var selectedImage: UIImage?
     @Binding public var isImagePickerPresented: Bool
-    public var sourceType: UIImagePickerController.SourceType = .camera
+    public var sourceType: UIImagePickerController.SourceType
 
     
-    public init(selectedImage: UIImage? = nil, isImagePickerPresented: Bool, sourceType: UIImagePickerController.SourceType) {
-        self.selectedImage = selectedImage
-        self.isImagePickerPresented = isImagePickerPresented
+    public init(selectedImage: Binding<UIImage?>, isImagePickerPresented: Binding<Bool>, sourceType: UIImagePickerController.SourceType = .camera) {
+        self._selectedImage = selectedImage
+        self._isImagePickerPresented = isImagePickerPresented
         self.sourceType = sourceType
     }
     
