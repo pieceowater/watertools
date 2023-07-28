@@ -22,6 +22,7 @@ public struct PieChart: View {
     
     @Binding public var slices: [PieChart.PieChartItem]
     @State public var showAll: Bool
+    @State public var labelState = true
     
     public init(slices: Binding<[PieChart.PieChartItem]>, showAll: Bool = false) {
         self._slices = slices
@@ -72,7 +73,6 @@ public struct PieChart: View {
                     if !(!showAll && index >= 6) {
                         HStack {
                             slice.color.cornerRadius(100).frame(width: 10, height: 10)
-                            @State var labelState = true
                             Text((labelState ? slice.title : watertools.formatCurrency(slice.value)) ?? "--")
                                 .font(.headline)
                                 .foregroundColor(.primary)
