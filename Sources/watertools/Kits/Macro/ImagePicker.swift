@@ -11,7 +11,7 @@ import AVFoundation
 import Photos
 import MobileCoreServices
 
-struct ImagePicker: UIViewControllerRepresentable {
+public struct ImagePicker: UIViewControllerRepresentable {
     @Binding public var selectedImage: UIImage?
     @Binding public var isImagePickerPresented: Bool
     public var sourceType: UIImagePickerController.SourceType = .camera

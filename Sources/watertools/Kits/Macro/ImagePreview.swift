@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ImagePreview: View {
+public struct ImagePreview: View {
     @Environment(\.presentationMode) var presentationMode
     public var image: UIImage?
     public var images: [UIImage]?
