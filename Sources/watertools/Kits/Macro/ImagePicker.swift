@@ -16,6 +16,13 @@ public struct ImagePicker: UIViewControllerRepresentable {
     @Binding public var isImagePickerPresented: Bool
     public var sourceType: UIImagePickerController.SourceType = .camera
 
+    
+    public init(selectedImage: UIImage? = nil, isImagePickerPresented: Bool, sourceType: UIImagePickerController.SourceType) {
+        self.selectedImage = selectedImage
+        self.isImagePickerPresented = isImagePickerPresented
+        self.sourceType = sourceType
+    }
+    
     public func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
