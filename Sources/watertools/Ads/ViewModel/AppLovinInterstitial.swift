@@ -12,7 +12,7 @@ import AppLovinSDK
 
 
 public class AppLovinInterstitialViewController: UIViewController, MAAdDelegate {
-    var interstitialAd: MAInterstitialAd!
+    public var interstitialAd: MAInterstitialAd!
     var retryAttempt = 0.0
     public let interstitialAdID: String?
     
