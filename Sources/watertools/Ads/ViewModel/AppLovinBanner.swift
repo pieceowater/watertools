@@ -36,8 +36,8 @@ public struct AppLovinWrapper: UIViewRepresentable {
     }
 }
 
-extension AppLovinWrapper {
-    class Coordinator: NSObject, MAAdViewAdDelegate {
+public extension AppLovinWrapper {
+    public class Coordinator: NSObject, MAAdViewAdDelegate {
         // MARK: MAAdDelegate Protocol
 
         func didLoad(_ ad: MAAd) {}
