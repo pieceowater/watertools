@@ -12,51 +12,40 @@ import Foundation
 import UIKit
 import AppLovinSDK
 
-public class AppLovinInterstitial: UIViewController, MAAdDelegate {
-    public var interstitialAd: MAInterstitialAd!
-    var retryAttempt = 0.0
-    public let interstitialAdID: String?
+public class AppLovinInterstitialController: ObservableObject, MAAdDelegate {
+    @Published public var isAdReady: Bool = false
+    private var interstitialAd: MAInterstitialAd?
+    private var adUnitID: String
     
-    public init(_ interstitialAdName: String) {
-        self.interstitialAdID = getAdID(interstitialAdName)
-        super.init(nibName: nil, bundle: nil)
+    public init(adUnitID: String) {
+        self.adUnitID = adUnitID
+        setupInterstitial()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    public func createInterstitialAd() {
-        guard let adUnitID = interstitialAdID else {
-            return
-        }
-        
+    private func setupInterstitial() {
         interstitialAd = MAInterstitialAd(adUnitIdentifier: adUnitID)
-        interstitialAd.delegate = self
-        
-        // Load the first ad
-        interstitialAd.load()
+        interstitialAd?.delegate = self
+        interstitialAd?.load()
+    }
+    
+    public func showInterstitial() {
+        if let interstitial = interstitialAd, interstitial.isReady {
+            interstitial.show()
+        } else {
+            print("Interstitial ad is not ready to be shown yet.")
+            // You can handle this case according to your needs, for example, by displaying a message to the user or trying to reload the ad again.
+        }
     }
     
     // MARK: MAAdDelegate Protocol
     
     public func didLoad(_ ad: MAAd) {
-        // Interstitial ad is ready to be shown. 'interstitialAd.isReady' will now return 'true'
-        
-        // Reset retry attempt
-        retryAttempt = 0
+        isAdReady = true
     }
     
     public func didFailToLoadAd(forAdUnitIdentifier adUnitIdentifier: String, withError error: MAError) {
-        // Interstitial ad failed to load
-        // We recommend retrying with exponentially higher delays up to a maximum delay (in this case 64 seconds)
-        
-        retryAttempt += 1
-        let delaySec = pow(2.0, min(6.0, retryAttempt))
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + delaySec) {
-            self.interstitialAd.load()
-        }
+        // Interstitial ad failed to load, you may want to handle this failure.
+        print("Interstitial ad failed to load: \(error.localizedDescription)")
     }
     
     public func didDisplay(_ ad: MAAd) {}
@@ -65,11 +54,11 @@ public class AppLovinInterstitial: UIViewController, MAAdDelegate {
     
     public func didHide(_ ad: MAAd) {
         // Interstitial ad is hidden. Pre-load the next ad
-        interstitialAd.load()
+        interstitialAd?.load()
     }
     
     public func didFail(toDisplay ad: MAAd, withError error: MAError) {
         // Interstitial ad failed to display. We recommend loading the next ad
-        interstitialAd.load()
+        interstitialAd?.load()
     }
 }
