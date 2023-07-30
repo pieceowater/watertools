@@ -26,7 +26,12 @@ public class AppLovinInterstitialViewController: UIViewController, MAAdDelegate 
     }
 
     public func createInterstitialAd() {
-        interstitialAd = MAInterstitialAd(adUnitIdentifier: interstitialAdID ?? "")
+        guard let adUnitID = interstitialAdID else {
+            completion(.failure(NSError(domain: "AdMobInterstitial", code: 0, userInfo: [NSLocalizedDescriptionKey: "Interstitial ad ID is nil"])))
+            return
+        }
+        
+        interstitialAd = MAInterstitialAd(adUnitIdentifier: adUnitID ?? "")
         interstitialAd.delegate = self
         
         // Load the first ad
