@@ -18,7 +18,7 @@ public class AppLovinInterstitialViewController: UIViewController, MAAdDelegate 
     
     public init(_ interstitialAdName: String) {
         self.interstitialAdID = getAdID(interstitialAdName)
-//        super.init()
+        super.init()
     }
     
     required init?(coder: NSCoder) {
