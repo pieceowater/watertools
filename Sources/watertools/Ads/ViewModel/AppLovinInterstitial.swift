@@ -27,7 +27,7 @@ public class AppLovinInterstitialViewController: UIViewController, MAAdDelegate 
 
     public func createInterstitialAd() {
         guard let adUnitID = interstitialAdID else {
-            completion(.failure(NSError(domain: "AdMobInterstitial", code: 0, userInfo: [NSLocalizedDescriptionKey: "Interstitial ad ID is nil"])))
+//            completion(.failure(NSError(domain: "AdMobInterstitial", code: 0, userInfo: [NSLocalizedDescriptionKey: "Interstitial ad ID is nil"])))
             return
         }
         
