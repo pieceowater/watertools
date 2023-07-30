@@ -6,10 +6,11 @@
 //
 // docs: https://dash.applovin.com/documentation/mediation/ios/ad-formats/interstitials
 
-import Foundation
-import SwiftUI
-import AppLovinSDK
+// AppLovinInterstitialViewController.swift
 
+import Foundation
+import UIKit
+import AppLovinSDK
 
 public class AppLovinInterstitialViewController: UIViewController, MAAdDelegate {
     public var interstitialAd: MAInterstitialAd!
@@ -18,7 +19,7 @@ public class AppLovinInterstitialViewController: UIViewController, MAAdDelegate 
     
     public init(_ interstitialAdName: String) {
         self.interstitialAdID = getAdID(interstitialAdName)
-//        super.init()
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -27,11 +28,10 @@ public class AppLovinInterstitialViewController: UIViewController, MAAdDelegate 
 
     public func createInterstitialAd() {
         guard let adUnitID = interstitialAdID else {
-//            completion(.failure(NSError(domain: "AdMobInterstitial", code: 0, userInfo: [NSLocalizedDescriptionKey: "Interstitial ad ID is nil"])))
             return
         }
         
-        interstitialAd = MAInterstitialAd(adUnitIdentifier: adUnitID ?? "")
+        interstitialAd = MAInterstitialAd(adUnitIdentifier: adUnitID)
         interstitialAd.delegate = self
         
         // Load the first ad
@@ -70,7 +70,6 @@ public class AppLovinInterstitialViewController: UIViewController, MAAdDelegate 
     
     public func didFail(toDisplay ad: MAAd, withError error: MAError) {
         // Interstitial ad failed to display. We recommend loading the next ad
-        
         interstitialAd.load()
     }
 }
