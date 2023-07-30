@@ -66,12 +66,12 @@ public let MyApps: [Ad] = [
         ],
        icon: "MoneyGuardApp",
        previews: [
-        "en":["moneyguard1EN","moneyguard2EN","moneyguard3EN","moneyguard4EN"],
-        "ru":["moneyguard1RU","moneyguard2RU","moneyguard3RU","moneyguard4RU"],
-        "kk":["moneyguard1RU","moneyguard2RU","moneyguard3RU","moneyguard4RU"],
-        "de":["moneyguard1EN","moneyguard2EN","moneyguard3EN","moneyguard4EN"],
-        "fr":["moneyguard1EN","moneyguard2EN","moneyguard3EN","moneyguard4EN"],
-        "es":["moneyguard1EN","moneyguard2EN","moneyguard3EN","moneyguard4EN"],
+        "en":["moneyguard1EN","moneyguard2EN","moneyguard3EN","moneyguard4EN","moneyguard5EN","moneyguard6EN","moneyguard7EN"],
+        "ru":["moneyguard1RU","moneyguard2RU","moneyguard3RU","moneyguard4RU","moneyguard5RU","moneyguard6RU","moneyguard7RU"],
+        "kk":["moneyguard1RU","moneyguard2RU","moneyguard3RU","moneyguard4RU","moneyguard5RU","moneyguard6RU","moneyguard7RU"],
+        "de":["moneyguard1EN","moneyguard2EN","moneyguard3EN","moneyguard4EN","moneyguard5EN","moneyguard6EN","moneyguard7EN"],
+        "fr":["moneyguard1EN","moneyguard2EN","moneyguard3EN","moneyguard4EN","moneyguard5EN","moneyguard6EN","moneyguard7EN"],
+        "es":["moneyguard1EN","moneyguard2EN","moneyguard3EN","moneyguard4EN","moneyguard5EN","moneyguard6EN","moneyguard7EN"],
        ],
        description: [
         "en":"Discover the Ultimate Financial Management App that Puts You in Control. Our feature-rich application is designed to empower you with a comprehensive suite of tools and functionalities. Effortlessly track your income and expenses, set budgets, and gain valuable insights with our intuitive interface and powerful analytics. Stay on top of your financial goals by setting savings targets and monitoring your progress. Make informed investment decisions with real-time market data and personalized recommendations. Securely connect your accounts for automatic transaction syncing and receive smart notifications for bill payments and upcoming due dates. With our app, financial management has never been easier or more accessible. Take charge of your financial future today and experience the power of our app's capabilities. Download now and embark on a journey towards financial success!",
