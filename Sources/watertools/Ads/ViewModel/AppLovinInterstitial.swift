@@ -17,8 +17,8 @@ public class AppLovinInterstitialController: ObservableObject, MAAdDelegate {
     private var interstitialAd: MAInterstitialAd?
     private var adUnitID: String
     
-    public init(adUnitID: String) {
-        self.adUnitID = adUnitID
+    public init(_ interstitialAdName: String) {
+        self.adUnitID = getAdID(interstitialAdName)
         setupInterstitial()
     }
     
