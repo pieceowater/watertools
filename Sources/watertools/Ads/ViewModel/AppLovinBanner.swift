@@ -40,24 +40,24 @@ public extension AppLovinWrapper {
     public class Coordinator: NSObject, MAAdViewAdDelegate {
         // MARK: MAAdDelegate Protocol
 
-        func didLoad(_ ad: MAAd) {}
+        public func didLoad(_ ad: MAAd) {}
 
-        func didFailToLoadAd(forAdUnitIdentifier adUnitIdentifier: String, withError error: MAError) {}
+        public func didFailToLoadAd(forAdUnitIdentifier adUnitIdentifier: String, withError error: MAError) {}
 
-        func didClick(_ ad: MAAd) {}
+        public func didClick(_ ad: MAAd) {}
 
-        func didFail(toDisplay ad: MAAd, withError error: MAError) {}
+        public func didFail(toDisplay ad: MAAd, withError error: MAError) {}
 
         // MARK: MAAdViewAdDelegate Protocol
 
-        func didExpand(_ ad: MAAd) {}
+        public func didExpand(_ ad: MAAd) {}
 
-        func didCollapse(_ ad: MAAd) {}
+        public func didCollapse(_ ad: MAAd) {}
 
         // MARK: Deprecated Callbacks
 
-        func didDisplay(_ ad: MAAd) { /* use this for impression tracking */ }
-        func didHide(_ ad: MAAd) { /* DO NOT USE - THIS IS RESERVED FOR FULLSCREEN ADS ONLY AND WILL BE REMOVED IN A FUTURE SDK RELEASE */ }
+        public func didDisplay(_ ad: MAAd) { /* use this for impression tracking */ }
+        public func didHide(_ ad: MAAd) { /* DO NOT USE - THIS IS RESERVED FOR FULLSCREEN ADS ONLY AND WILL BE REMOVED IN A FUTURE SDK RELEASE */ }
     }
 }
 
