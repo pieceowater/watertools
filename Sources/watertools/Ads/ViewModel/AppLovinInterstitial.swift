@@ -9,8 +9,8 @@
 // AppLovinInterstitialViewController.swift
 
 import Foundation
-import UIKit
 import AppLovinSDK
+import Combine
 
 public class AppLovinInterstitialController: ObservableObject, MAAdDelegate {
     @Published public var isAdReady: Bool = false
