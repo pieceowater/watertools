@@ -46,7 +46,7 @@ public class AppLovinInterstitial: NSObject, MAAdDelegate, ObservableObject {
     
     public func didFailToLoadAd(forAdUnitIdentifier adUnitIdentifier: String, withError error: MAError) {
         // Interstitial ad failed to load, you may want to handle this failure.
-        print("Interstitial ad failed to load: \(error.localizedDescription)")
+        print("Interstitial ad failed to load: \(error)")
     }
     
     public func didDisplay(_ ad: MAAd) {}
