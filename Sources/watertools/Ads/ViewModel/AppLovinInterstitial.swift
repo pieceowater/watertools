@@ -17,10 +17,14 @@ public class AppLovinInterstitialViewController: UIViewController, MAAdDelegate 
     public let interstitialAdID: String?
     
     public init(_ interstitialAdName: String) {
-        self.interstitialAdID = getAdID(interstitialAdName)
-//        super.init()
+        self.interstitialAdID = getAdID(interstitialAdName) ?? ""
+        super.init()
     }
     
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+
     public func createInterstitialAd() {
         interstitialAd = MAInterstitialAd(adUnitIdentifier: interstitialAdID)
         interstitialAd.delegate = self
